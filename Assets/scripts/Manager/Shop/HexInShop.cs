@@ -6,11 +6,20 @@ using UnityEngine;
 public class HexInShop : MonoBehaviour
 {
     public GameObject hexOutline;
-    bool selected = false;
+    public ShopManager shopManager;
+
+    static int shopPositionSetup = 0;
+    int shopPosition;
+
+    void Awake()
+    {
+        shopPosition = shopPositionSetup;
+        shopPositionSetup++;
+    }
 
     private void OnMouseDown()
     {
-        bool selected = true;
-        Instantiate(hexOutline, transform.position, Quaternion.identity);
+        Debug.Log(shopPosition);
+        shopManager.selectedTile = shopPosition;
     }
 }

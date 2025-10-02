@@ -331,6 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hexOutline: {fileID: 769396582}
+  shopManager: {fileID: 0}
 --- !u!1 &508976873
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hex: {fileID: 411414083}
+  selectedTile: 0
 --- !u!4 &508976875
 Transform:
   m_ObjectHideFlags: 0
@@ -760,7 +762,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032801434}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2032801436
 Camera:
   m_ObjectHideFlags: 0
