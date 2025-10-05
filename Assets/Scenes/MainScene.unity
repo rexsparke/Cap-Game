@@ -235,7 +235,6 @@ GameObject:
   - component: {fileID: 948776734}
   - component: {fileID: 948776733}
   - component: {fileID: 948776735}
-  - component: {fileID: 948776736}
   m_Layer: 0
   m_Name: HexGrid
   m_TagString: Untagged
@@ -251,7 +250,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948776732}
   m_Enabled: 1
-  m_CellSize: {x: 1, y: 1.25, z: 1}
+  m_CellSize: {x: 0.8659766, y: 1, z: 1}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 1
   m_CellSwizzle: 2
@@ -380,42 +379,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!19719996 &948776736
-TilemapCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948776732}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_MaximumTileChangeCount: 1000
-  m_ExtrusionFactor: 0
-  m_UseDelaunayMesh: 0
 --- !u!1 &1029378395
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,7 +676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2108031034
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -895,5 +858,5 @@ SceneRoots:
   - {fileID: 1388122895}
   - {fileID: 401753004}
   - {fileID: 5233636984657941254}
-  - {fileID: 1029378397}
   - {fileID: 948776734}
+  - {fileID: 1029378397}
