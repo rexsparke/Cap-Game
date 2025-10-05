@@ -25,13 +25,21 @@ public class PlacementManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int cellPos = hexTileMap.WorldToCell(mouseWorldPos);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-            if (hexTileMap.HasTile(cellPos))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                hexTileMap.SetTile(cellPos,selectedTile);
+                Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                //Vector2 mouseWorldPos =;
+                Vector3Int cellPos = hexTileMap.WorldToCell(mouseWorldPos);
+
+                if (hexTileMap.HasTile(cellPos))
+                {
+                    hexTileMap.SetTile(cellPos, selectedTile);
+                }
             }
+            
         }
     }
 }
