@@ -8,18 +8,37 @@ public class HexInShop : MonoBehaviour
     public GameObject hexOutline;
     public ShopManager shopManager;
 
-    static int shopPositionSetup = 0;
+    static int shopPositionSetup = -2;
     int shopPosition;
 
     void Awake()
     {
-        shopPosition = shopPositionSetup;
+        shopPosition = shopPositionSetup; //Assigns the position variable based on where the tile is in the shop (1-3)
         shopPositionSetup++;
     }
 
-    private void OnMouseDown()
+    private void OnMouseDown() //Sets the selected tile in the Shop Manager based on position and adds highlight to current hex
     {
-        Debug.Log(shopPosition);
-        shopManager.selectedTile = shopPosition;
+        if (gameObject.tag == "ShopHex")
+        {
+            shopManager.selectedTile = shopPosition;
+            Debug.Log(shopManager.selectedTile);
+            hexOutline.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        }
+    }
+
+    public void Placement()
+    {
+        if (shopPosition == shopManager.selectedTile) //Checks to make sure it is the selected tile
+        {
+            gameObject.tag = "Untagged"; //Removes ShopHex from tile, preventing further interaction. Then removes outline, deselects the tile, and moves it to the clicked location
+            hexOutline.transform.position = new Vector3(20, 0);
+            shopManager.selectedTile = 0;
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = Vector2.Lerp(transform.position, mousePosition, 100);
+
+            shopPositionSetup = shopPosition;
+            shopManager.ReplaceStock(shopPosition); //Restocks the shop with a new tile in the position of the old one
+        }
     }
 }

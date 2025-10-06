@@ -1,12 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
     public GameObject hex;
+    public GameObject hexBlue;
+    public GameObject hexRed;
+    
 
-    public int selectedTile = 0;
+    public GameObject[] currentHexes;
+
+    float spawnY = 3.5f;
+    public int selectedTile = 0; //Currently selected tile in the shop
 
     void Start()
     {
@@ -15,12 +20,48 @@ public class ShopManager : MonoBehaviour
 
     public void InitialStock() //Restocks the shop with 3 new tiles, happens at the start of every build phase
     {
-        float spawnY = 3.5f;
-
         for (int i = 0; i < 3; i++)
         {
-            Instantiate(hex, new Vector3(9.85f, spawnY), Quaternion.identity);
+            HexSelection();
             spawnY -= 3.5f;
+        }
+    }
+
+    public void PlacementBroadcast() //Gathers all current hexes tagged with the ShopHex tag, then calls a placement function in each of them
+    {
+        currentHexes = GameObject.FindGameObjectsWithTag("ShopHex");
+        foreach (GameObject hex in currentHexes)
+        {
+            hex.SendMessage("Placement");
+        }
+    }
+
+    public void ReplaceStock(int position) //Replaces a placed hex with a new one
+    {
+        switch (position)
+        {
+            case 1:
+                spawnY = 3.5f; break;
+            case 2:
+                spawnY = 0; break;
+            case 3:
+                spawnY = -3.5f; break;
+        }
+
+        HexSelection();
+    }
+
+    public void HexSelection()
+    {
+        int randomHex = UnityEngine.Random.Range(0, 3);
+        switch (randomHex)
+        {
+            case 0:
+                Instantiate(hex, new Vector3(8.8f, spawnY), Quaternion.identity); break;
+            case 1:
+                Instantiate(hexBlue, new Vector3(8.8f, spawnY), Quaternion.identity); break;
+            case 2:
+                Instantiate(hexRed, new Vector3(8.8f, spawnY), Quaternion.identity); break;
         }
     }
 }
