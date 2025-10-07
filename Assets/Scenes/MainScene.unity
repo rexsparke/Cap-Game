@@ -249,7 +249,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948776732}
   m_Enabled: 1
-  m_CellSize: {x: 0.8659766, y: 1, z: 1}
+  m_CellSize: {x: 0.8659766, y: 1, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 1
   m_CellSwizzle: 2
@@ -279,6 +279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1029378397}
   - component: {fileID: 1029378396}
+  - component: {fileID: 1029378398}
   m_Layer: 0
   m_Name: PlacementManager
   m_TagString: Untagged
@@ -300,6 +301,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexTileMap: {fileID: 1669253206}
   selectedTile: {fileID: 11400000, guid: 775f29f8d74f2474daac2c688a113f4c, type: 2}
+  grid: {fileID: 948776733}
+  tileType: {fileID: 0}
+  TileChoice: 
 --- !u!4 &1029378397
 Transform:
   m_ObjectHideFlags: 0
@@ -315,6 +319,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1029378398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029378395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31f7204df5643d4cbb34b6a3c633958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TileList:
+  - {fileID: 11400000, guid: 775f29f8d74f2474daac2c688a113f4c, type: 2}
+  - {fileID: 11400000, guid: 2c9d01d8c15212549b27f3f77407586d, type: 2}
 --- !u!1 &1388122892
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +531,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 0, y: 0, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileAnchor: {x: 0, y: 0, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -571,7 +590,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -868,5 +887,5 @@ SceneRoots:
   - {fileID: 1388122895}
   - {fileID: 401753004}
   - {fileID: 5233636984657941254}
-  - {fileID: 948776734}
   - {fileID: 1029378397}
+  - {fileID: 948776734}

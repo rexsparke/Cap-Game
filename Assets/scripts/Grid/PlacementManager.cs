@@ -12,11 +12,12 @@ public class PlacementManager : MonoBehaviour
     public Tilemap hexTileMap;
     public Tile selectedTile;
     public Grid grid;
+    public GetTileType tileType;
+    public string TileChoice;   //Place holder
 
 
     void Start()
     {
-       // Grid grid = transform.GetComponent<Grid>();
 
         if (grid != null)
         {
@@ -24,7 +25,7 @@ public class PlacementManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Grid is their");
+            Debug.Log("Grid is their");
         }
         #region Debug
         //if (hexTileMap != null && selectedTile != null)
@@ -40,37 +41,28 @@ public class PlacementManager : MonoBehaviour
     }
     void Update()
     {
-        //raycast from from camera
-
-        //Vector2 mousePosition = Mouse.current.position.ReadValue();
-        //Vector2 mousePosition = Input.mousePosition;
-        //Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-        //RaycastHit hit;
-
         if (Input.GetMouseButtonDown(0))
         {
+            ////Get Tile For placement
+            //selectedTile = tileType.GetTile(TileChoice);
+            //if(selectedTile == null)
+            //{
+            //    Debug.LogError("Get Tile Method returned null");
+            //}
             Debug.Log("Mouse clicked!");
-                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(
-                    new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 0f));
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(
+                new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
 
             Vector3Int cellPos = hexTileMap.WorldToCell(mouseWorldPos);
-            Vector3 cellWorldPos = hexTileMap.CellToWorld(cellPos);
-
+            if (!hexTileMap.HasTile(cellPos))
+            { 
             Debug.Log("Mouse world pos: " + mouseWorldPos + " | Cell pos: " + cellPos);
-
-            //Get grid cell center
-            Vector3Int cellPosition = grid.LocalToCell(mouseWorldPos);
-            Vector3 cellCenter = grid.GetCellCenterLocal(cellPosition);
-
-            Vector3Int cellCenterPos= Vector3Int.CeilToInt(cellCenter);
-
-            // Place Tile
-            hexTileMap.SetTile(cellCenterPos, selectedTile);
+            PlaceTileAtCellCenter(cellPos);
             //hexTileMap.SetTile(cellPos, selectedTile);
 
             //Draw debug square
             //DrawCellOutline(cellWorldPos);
-
+            }
             #region Debug
             //if(hexTileMap == null)
             //{
@@ -82,8 +74,20 @@ public class PlacementManager : MonoBehaviour
             //}
             #endregion
         }
-
     }
+    public void PlaceTileAtCellCenter(Vector3Int cellPos)
+    {
+        Vector3 cellWorldPos = hexTileMap.CellToWorld(cellPos);
+        
+
+        //Get grid cell center
+        //Vector3Int cellPosition = grid.LocalToCell(mouseWorldPos);
+        Vector3 cellCenter = grid.GetCellCenterLocal(cellPos);
+
+        // Place Tile
+        hexTileMap.SetTile(cellPos, selectedTile);
+    }
+    #region practice
     //void DrawCellOutline(Vector3 worldPos)
     //{
     //    // Get cell size (usually 1x1 unless you changed Tilemap cell size)
@@ -101,4 +105,5 @@ public class PlacementManager : MonoBehaviour
     //    Debug.DrawLine(topRight, topLeft, Color.red, 1f);
     //    Debug.DrawLine(topLeft, bottomLeft, Color.red, 1f);
     //}
+    #endregion
 }
