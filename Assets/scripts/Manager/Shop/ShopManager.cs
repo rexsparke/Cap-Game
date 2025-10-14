@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    public GameObject hex;
-    public GameObject hexBlue;
-    public GameObject hexRed;
-    
+    public GameObject hexOutline;
+
+    public GameObject[] hexes;
+
 
     public GameObject[] currentHexes;
 
@@ -57,11 +57,20 @@ public class ShopManager : MonoBehaviour
         switch (randomHex)
         {
             case 0:
-                Instantiate(hex, new Vector3(8.8f, spawnY), Quaternion.identity); break;
+                GameObject newHex = Instantiate(hexes[0], new Vector3(8.8f, spawnY), Quaternion.identity);
+                newHex.GetComponent<HexInShop>().shopManager = this;
+                newHex.GetComponent<HexInShop>().hexOutline = hexOutline;
+                break;
             case 1:
-                Instantiate(hexBlue, new Vector3(8.8f, spawnY), Quaternion.identity); break;
+                GameObject newHexRed = Instantiate(hexes[1], new Vector3(8.8f, spawnY), Quaternion.identity);
+                newHexRed.GetComponent<HexInShop>().shopManager = this;
+                newHexRed.GetComponent<HexInShop>().hexOutline = hexOutline; 
+                break;
             case 2:
-                Instantiate(hexRed, new Vector3(8.8f, spawnY), Quaternion.identity); break;
+                GameObject newHexBlue = Instantiate(hexes[2], new Vector3(8.8f, spawnY), Quaternion.identity);
+                newHexBlue.GetComponent<HexInShop>().shopManager = this;
+                newHexBlue.GetComponent<HexInShop>().hexOutline = hexOutline; 
+                break;
         }
     }
 }

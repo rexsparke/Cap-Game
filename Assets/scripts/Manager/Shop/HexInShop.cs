@@ -8,7 +8,7 @@ public class HexInShop : MonoBehaviour
     public GameObject hexOutline;
     public ShopManager shopManager;
 
-    static int shopPositionSetup = -2;
+    static int shopPositionSetup = 1;
     int shopPosition;
 
     void Awake()
