@@ -7,6 +7,7 @@ public class HexInShop : MonoBehaviour
 {
     public GameObject hexOutline;
     public ShopManager shopManager;
+    public bool canPlace = false;
 
     static int shopPositionSetup = 1;
     int shopPosition;
@@ -24,6 +25,8 @@ public class HexInShop : MonoBehaviour
             shopManager.selectedTile = shopPosition;
             Debug.Log(shopManager.selectedTile);
             hexOutline.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            canPlace = true;
+            Debug.Log("Can choose Place Tile!");
         }
     }
 

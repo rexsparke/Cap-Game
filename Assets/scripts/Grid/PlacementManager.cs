@@ -14,12 +14,13 @@ public class PlacementManager : MonoBehaviour
     public Grid grid;
     public GetTileType tileType;
     public string TileChoice;   //Place holder
+    HexInShop hexShop;
+    ShopManager shopMan;
 
 
     void Start()
     {
-
-        if (grid != null)
+        if (grid == null)
         {
             Debug.Log("Grid is not their");
         }
@@ -41,39 +42,44 @@ public class PlacementManager : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            ////Get Tile For placement
-            //selectedTile = tileType.GetTile(TileChoice);
-            //if(selectedTile == null)
-            //{
-            //    Debug.LogError("Get Tile Method returned null");
-            //}
-            Debug.Log("Mouse clicked!");
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(
-                new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
+        //if ()
+        //{
+            if (Input.GetMouseButtonDown(0) && hexShop.canPlace == true)
+            {
+                ////Get Tile For placement
+                if (selectedTile == null)
+                {
+                    Debug.LogError("Get Tile Method returned null");
+                }
+                selectedTile = tileType.GetTiles(shopMan.selectedTile);
 
-            Vector3Int cellPos = hexTileMap.WorldToCell(mouseWorldPos);
-            if (!hexTileMap.HasTile(cellPos))
-            { 
-            Debug.Log("Mouse world pos: " + mouseWorldPos + " | Cell pos: " + cellPos);
-            PlaceTileAtCellCenter(cellPos);
-            //hexTileMap.SetTile(cellPos, selectedTile);
+                Debug.Log("Mouse clicked!");
+                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(
+                    new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
 
-            //Draw debug square
-            //DrawCellOutline(cellWorldPos);
+                Vector3Int cellPos = hexTileMap.WorldToCell(mouseWorldPos);
+
+                //Checks If
+                if (!hexTileMap.HasTile(cellPos))
+                {
+                    Debug.Log("Mouse world pos: " + mouseWorldPos + " | Cell pos: " + cellPos);
+                    PlaceTileAtCellCenter(cellPos);
+
+                    //Draw debug square
+                    //DrawCellOutline(cellWorldPos);
+                }
+                #region Debug
+                //if(hexTileMap == null)
+                //{
+                //    Debug.LogError("HexTileMap is not assigned!");
+                //}
+                //if(selectedTile == null)
+                //{
+                //    Debug.LogError("SelectedTile is not assigned!");
+                //}
+                #endregion
             }
-            #region Debug
-            //if(hexTileMap == null)
-            //{
-            //    Debug.LogError("HexTileMap is not assigned!");
-            //}
-            //if(selectedTile == null)
-            //{
-            //    Debug.LogError("SelectedTile is not assigned!");
-            //}
-            #endregion
-        }
+        //}
     }
     public void PlaceTileAtCellCenter(Vector3Int cellPos)
     {
@@ -86,6 +92,8 @@ public class PlacementManager : MonoBehaviour
 
         // Place Tile
         hexTileMap.SetTile(cellPos, selectedTile);
+        hexShop.canPlace = false;
+        Debug.Log("Can't place anymore!");
     }
     #region practice
     //void DrawCellOutline(Vector3 worldPos)
