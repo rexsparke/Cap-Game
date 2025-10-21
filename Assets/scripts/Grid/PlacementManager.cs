@@ -42,16 +42,16 @@ public class PlacementManager : MonoBehaviour
     }
     void Update()
     {
-        //if ()
+        //if (hexShop.canPlace == true)
         //{
-            if (Input.GetMouseButtonDown(0) && hexShop.canPlace == true)
+        if (Input.GetMouseButtonDown(0))
             {
                 ////Get Tile For placement
                 if (selectedTile == null)
                 {
                     Debug.LogError("Get Tile Method returned null");
                 }
-                selectedTile = tileType.GetTiles(shopMan.selectedTile);
+                //selectedTile = tileType.GetTiles(shopMan.selectedTile);
 
                 Debug.Log("Mouse clicked!");
                 Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(
@@ -92,8 +92,8 @@ public class PlacementManager : MonoBehaviour
 
         // Place Tile
         hexTileMap.SetTile(cellPos, selectedTile);
-        hexShop.canPlace = false;
-        Debug.Log("Can't place anymore!");
+        //hexShop.canPlace = false;
+        //Debug.Log("Can't place anymore!");
     }
     #region practice
     //void DrawCellOutline(Vector3 worldPos)
