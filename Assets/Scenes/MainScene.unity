@@ -290,7 +290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &401753001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,7 +352,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &401753004
 RectTransform:
@@ -583,6 +583,7 @@ GameObject:
   - component: {fileID: 1462416416}
   - component: {fileID: 1462416415}
   - component: {fileID: 1462416419}
+  - component: {fileID: 1462416420}
   m_Layer: 0
   m_Name: main
   m_TagString: Untagged
@@ -597,7 +598,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462416414}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bd0289a96216a741b321e5ecb0971e1, type: 3}
   m_Name: 
@@ -641,6 +642,19 @@ MonoBehaviour:
   grid: {fileID: 948776733}
   tileType: {fileID: 0}
   TileChoice: 
+--- !u!114 &1462416420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462416414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05692f9cfec62fa4dae46e75b52a26f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canPlace: 0
 --- !u!1 &1662262516
 GameObject:
   m_ObjectHideFlags: 0

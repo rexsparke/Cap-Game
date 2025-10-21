@@ -5,29 +5,25 @@ using UnityEngine.Tilemaps;
 
 public class PlacementManager : MonoBehaviour
 {
-    //[SerializeField]
-    //private Grid m_hexGrid;
-    //[SerializeField]
-    //private GameObject m_hexLandPreFab;
     public Tilemap hexTileMap;
     public Tile selectedTile;
     public Grid grid;
     public GetTileType tileType;
     public string TileChoice;   //Place holder
-    HexInShop hexShop;
-    ShopManager shopMan;
+    GlobalManager globalMan;
 
 
     void Start()
     {
-        if (grid == null)
-        {
-            Debug.Log("Grid is not their");
-        }
-        else
-        {
-            Debug.Log("Grid is their");
-        }
+        globalMan = GetComponent<GlobalManager>();
+        //if(globalMan.canPlace == false)
+        //{
+        //    Debug.LogError("CanPlay is false");
+        //}
+        //else
+        //{
+        //    Debug.Log("Can place is not null");
+        //}
         #region Debug
         //if (hexTileMap != null && selectedTile != null)
         //{
@@ -44,8 +40,9 @@ public class PlacementManager : MonoBehaviour
     {
         //if (hexShop.canPlace == true)
         //{
-        if (Input.GetMouseButtonDown(0))
-            {
+        if (Input.GetMouseButtonDown(0) && globalMan.canPlace == true)
+           {
+         //   if(hexShop
                 ////Get Tile For placement
                 if (selectedTile == null)
                 {

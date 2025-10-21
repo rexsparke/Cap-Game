@@ -135,3 +135,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexOutline: {fileID: 0}
   shopManager: {fileID: 0}
+  globalManager: {fileID: 0}

@@ -7,13 +7,14 @@ public class HexInShop : MonoBehaviour
 {
     public GameObject hexOutline;
     public ShopManager shopManager;
-    public bool canPlace = false;
+    public GlobalManager globalManager;
 
     static int shopPositionSetup = 1;
     int shopPosition;
 
     void Awake()
     {
+        globalManager = GameObject.Find("main").GetComponent<GlobalManager>();
         shopPosition = shopPositionSetup; //Assigns the position variable based on where the tile is in the shop (1-3)
         shopPositionSetup++;
     }
@@ -25,8 +26,8 @@ public class HexInShop : MonoBehaviour
             shopManager.selectedTile = shopPosition;
             Debug.Log(shopManager.selectedTile);
             hexOutline.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            canPlace = true;
-            Debug.Log("Can choose Place Tile!");
+            globalManager.canPlace = true;
+            Debug.Log("Can place Tile!");
         }
     }
 

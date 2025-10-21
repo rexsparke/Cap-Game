@@ -7,7 +7,6 @@ public class ShopManager : MonoBehaviour
 
     public GameObject[] hexes;
 
-
     public GameObject[] currentHexes;
 
     float spawnY = 3.5f;
