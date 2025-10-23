@@ -35,7 +35,7 @@ public class HexInShop : MonoBehaviour
     {
         if (shopPosition == shopManager.selectedTile) //Checks to make sure it is the selected tile
         {
-            gameObject.tag = "Untagged"; //Removes ShopHex from tile, preventing further interaction. Then removes outline, deselects the tile, and moves it to the clicked location
+            gameObject.tag = "BoardHex"; //Removes ShopHex from tile, preventing further interaction. Then removes outline, deselects the tile, and moves it to the clicked location
             hexOutline.transform.position = new Vector3(20, 0);
             shopManager.selectedTile = 0;
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
