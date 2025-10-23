@@ -1,14 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicBeeTile : MonoBehaviour
-{void Start()
+{
+
+    public GameObject hexes;
+
+    void Start()
     {
-        
-    }
-    void Update()
-    {
-        
+        GameObject newHex = Instantiate(hexes, new Vector3(0f, 0f), Quaternion.identity);
     }
 }

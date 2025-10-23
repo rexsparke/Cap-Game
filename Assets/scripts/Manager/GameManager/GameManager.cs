@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public int waspsToSpawn = 3;    // How many to spawn per fight
     public Transform spawnArea;     // Optional: empty object marking spawn zone
 
+    public GameObject[] spawnHexes;
+
     void Update()
     {
         if (currentPhase == GamePhase.Combat)
@@ -30,6 +32,12 @@ public class GameManager : MonoBehaviour
         {
             currentPhase = GamePhase.Combat;
             NotifyPhaseChange("Combat Phase");
+
+            spawnHexes = GameObject.FindGameObjectsWithTag("BoardHex");
+            foreach (GameObject hex in spawnHexes)
+            {
+                hex.SendMessage("Spawn");
+            }
 
             SpawnWasps();
         }
