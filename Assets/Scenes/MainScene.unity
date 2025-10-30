@@ -638,7 +638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hexTileMap: {fileID: 1669253206}
-  selectedTile: {fileID: 11400000, guid: 775f29f8d74f2474daac2c688a113f4c, type: 2}
+  selectedTile: {fileID: 11400000, guid: 624052cc2dfddfd43b8ebde116ff1a93, type: 2}
   grid: {fileID: 948776733}
   tileType: {fileID: 0}
   TileChoice: 
