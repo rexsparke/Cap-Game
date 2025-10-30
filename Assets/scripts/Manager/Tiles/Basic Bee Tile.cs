@@ -6,10 +6,10 @@ using UnityEngine;
 public class BasicBeeTile : MonoBehaviour
 {
 
-    public GameObject hexes;
+    public GameObject basicBee;
 
     void Start()
     {
-        GameObject newHex = Instantiate(hexes, new Vector3(0f, 0f), Quaternion.identity);
+        GameObject newHex = Instantiate(basicBee, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
     }
 }
