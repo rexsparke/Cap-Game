@@ -638,10 +638,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hexTileMap: {fileID: 1669253206}
-  selectedTile: {fileID: 11400000, guid: 624052cc2dfddfd43b8ebde116ff1a93, type: 2}
+  selectedTile: {fileID: 11400000, guid: 775f29f8d74f2474daac2c688a113f4c, type: 2}
   grid: {fileID: 948776733}
   tileType: {fileID: 0}
-  TileChoice: 
+  TileList:
+  - {fileID: 6141780677730695057, guid: de1a5c7afc1907841856cdab50df9d43, type: 3}
+  - {fileID: 5619022750768337019, guid: e9a0c196783421541a52a24afc3ea91a, type: 3}
+  - {fileID: 7035358808841186246, guid: 6a2133cb00d3e474e9e775bffd55ced7, type: 3}
 --- !u!114 &1462416420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,7 +895,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013138610}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2013138612
 Camera:
   m_ObjectHideFlags: 0

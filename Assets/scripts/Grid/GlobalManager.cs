@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GlobalManager : MonoBehaviour
 {
-    public bool canPlace = false;
+    public bool canPlace;
 
     void Start()
     {
-        
+        canPlace = false;
     }
 }

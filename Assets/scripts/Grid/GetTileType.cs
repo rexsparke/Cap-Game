@@ -7,32 +7,37 @@ using UnityEngine.Tilemaps;
 public class GetTileType : MonoBehaviour
 {
     ShopManager shopManager;    //Declared a public reference to script
-    public List<Tile> TileList = new List<Tile>();
+    //public List<GameObject> TileList = new List<GameObject>();
 
-    public Tile GetTile(string pickedTile)  //Gets tile type by name
-    {
-        if (shopManager != null)
-        {
-            //return TileList[shopManager.selectedTile];
-            foreach (Tile tile in TileList)
-            {
-                Debug.Log("Tile: " + tile.name + " was check!");
+    //public Tile GetTile(string pickedTile)  //Gets tile type by name
+    //{
+    //    //if (shopManager != null)
+    //    //{
+    //    //    //return TileList[shopManager.selectedTile];
+    //    //    foreach (Tile tile in TileList)
+    //    //    {
+    //    //        Debug.Log("Tile: " + tile.name + " was check!");
 
-                if (tile.name == pickedTile)
-                {
-                    return tile;
-                }
-            }
-        }
-        else
-        {
-            Debug.LogError("Script Not their");
-        }
-        return null;
-    }
-    public Tile GetTiles(int selectedTile)  //Gets tile type by index number
-    {
-        Debug.Log("Tile changed to: " + TileList[selectedTile].name);
-        return TileList[selectedTile];
-    }
+    //    //        if (tile.name == pickedTile)
+    //    //        {
+    //    //            return tile;
+    //    //        }
+    //    //    }
+    //    //}
+    //    //else
+    //    //{
+    //    //    Debug.LogError("Script Not their");
+    //    //}
+    //    //return null;
+    //}
+    ////public Tile GetTiles(int selectedTile)  //Gets tile type by index number
+    ////{
+    ////    Debug.Log("Tile changed to: " + TileList[selectedTile].name);
+    ////    return TileList[selectedTile];
+    ////}
+    //public GameObject GetGameObject(int selectedTile)
+    //{
+    //    GameObject objTile = TileList[selectedTile];
+    //    return objTile;
+    //}
 }
