@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlacementManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlacementManager : MonoBehaviour
     GlobalManager globalMan;
     private GameObject selectedObjTile;
     ShopManager shopMan;
+    HexInShop hexShop;
 
 
     void Start()
@@ -44,7 +46,7 @@ public class PlacementManager : MonoBehaviour
     {
         if (globalMan.canPlace == true)
         {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && raycastThing() == true)
            {
          //   if(hexShop
                 ////Get Tile For placement
@@ -56,10 +58,12 @@ public class PlacementManager : MonoBehaviour
                 Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(
                             new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
 
-                Debug.Log("Mouse world pos: " + mouseWorldPos + " | Cell pos: " + GetCelPosition());
+                
 
                 //Returns the integer coordinates of the cell on the tilemap or grid if i tried.
                 Vector3Int cellPos = hexTileMap.WorldToCell(mouseWorldPos);
+
+                Debug.Log("Mouse world pos: " + mouseWorldPos + " | Cell pos: " + cellPos);
                 Debug.Log("Mouse clicked!");
                 //Vector3Int cellPos = GetCelPosition();
                 //Checks If
@@ -81,32 +85,42 @@ public class PlacementManager : MonoBehaviour
             }
         }
     }
-    public Vector3Int GetCelPosition()
-    {
-        //Get world position of mouse
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(
-                    new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
+    //public Vector3Int GetCelPosition()
+    //{
+    //    //Get world position of mouse
+    //    Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(
+    //                new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
 
-        //Debug.Log("Mouse world pos: " + mouseWorldPos + " | Cell pos: " + GetCelPosition());
+    //    //Debug.Log("Mouse world pos: " + mouseWorldPos + " | Cell pos: " + GetCelPosition());
 
-        //Returns the integer coordinates of the cell on the tilemap or grid if i tried.
-        return hexTileMap.WorldToCell(mouseWorldPos);
-    }
+    //    //Returns the integer coordinates of the cell on the tilemap or grid if i tried.
+    //    return hexTileMap.WorldToCell(mouseWorldPos);
+    //}
     public void PlaceObjectAtCellCenter(Vector3Int cellPos)
     {
         //Vector3 cellWorldPos = hexTileMap.CellToWorld(cellPos);
         //Vector3Int cellPosition = grid.LocalToCell(mouseWorldPos);
-
+        if (grid == null)
+        {
+            Debug.LogError("Grid reference is missing!");
+            return;
+        }
+        if (shopMan == null || shopMan.selectedTile == null)
+        {
+            Debug.LogError("Shop manager or selected tile is missing!");
+            return;
+        }
         //Get grid cell center
-        Vector3 cellCenter = grid.GetCellCenterLocal(cellPos);
+        Vector3 cellCenter = grid.GetCellCenterWorld(cellPos);
 
         //Get New Tile From Shop
         selectedObjTile = GetGameObject(shopMan.selectedTile);
 
         // Place Tile
         selectedObjTile.transform.position = new Vector2(cellCenter.x,cellCenter.y);
-        hexTileMap.SetTile(cellPos, selectedTile);
+        //hexTileMap.SetTile(cellPos, selectedTile);
         globalMan.canPlace = false;
+        Debug.Log("Tile Object placed!");
         Debug.Log("Can't place anymore!");
     }
     public GameObject GetGameObject(int selectedTile)
@@ -114,20 +128,30 @@ public class PlacementManager : MonoBehaviour
         GameObject objTile = TileList[selectedTile];
         return objTile;
     }
-    public bool CheckShopPlaceMent(Vector3Int cellPosition)
+    public bool raycastThing()
     {
-        int switchCheck = cellPosition.x;
-        switch(switchCheck)
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // Get mouse position in screen coordinates
+        Vector3 mousePos = Input.mousePosition;
+
+        // Convert screen coordinates to world coordinates
+        mousePos.z = 10f; // Set a small positive z-value for raycasting
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+
+        // Cast a ray from the mouse position
+        RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+        if (hit.collider != null)
         {
-            case 6:
+            if (hit.collider.gameObject.CompareTag("UI"))
+            {
                 return false;
-            case 7:
+            }
+            if (hit.collider.gameObject.CompareTag("ShopHex"))
+            {
                 return false;
-            case 8:
-                return false;
-            default:
-                return true;
+            }
         }
+        return true;
     }
     #region practice
     //void DrawCellOutline(Vector3 worldPos)

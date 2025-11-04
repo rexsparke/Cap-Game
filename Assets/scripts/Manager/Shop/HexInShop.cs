@@ -11,7 +11,7 @@ public class HexInShop : MonoBehaviour
 
     static int shopPositionSetup = 1;
     int shopPosition;
-    bool canPlace = false;
+    public bool canPlace = false;
 
     void Awake()
     {
@@ -27,8 +27,7 @@ public class HexInShop : MonoBehaviour
             shopManager.selectedTile = shopPosition;
             Debug.Log("Selected Tile int is: " + shopManager.selectedTile);
             hexOutline.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            PerformActionAfterDelay();
-            canPlace = true;
+            globalManager.canPlace = true;
             Debug.Log("CanPlace = " + globalManager.canPlace);
             Debug.Log("Can place Tile!");
         }
@@ -47,9 +46,5 @@ public class HexInShop : MonoBehaviour
             shopPositionSetup = shopPosition;
             shopManager.ReplaceStock(shopPosition); //Restocks the shop with a new tile in the position of the old one
         }
-    }
-    IEnumerator PerformActionAfterDelay()
-    {
-        yield return new WaitForSeconds(0.3f);
     }
 }

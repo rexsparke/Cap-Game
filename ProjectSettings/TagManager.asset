@@ -8,6 +8,7 @@ TagManager:
   - ShopHex
   - BoardHex
   - HoneyComb
+  - UI
   layers:
   - Default
   - TransparentFX
