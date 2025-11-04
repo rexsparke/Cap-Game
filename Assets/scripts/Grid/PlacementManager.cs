@@ -87,17 +87,6 @@ public class PlacementManager : MonoBehaviour
             }
         }
     }
-    //public Vector3Int GetCelPosition()
-    //{
-    //    //Get world position of mouse
-    //    Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(
-    //                new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
-
-    //    //Debug.Log("Mouse world pos: " + mouseWorldPos + " | Cell pos: " + GetCelPosition());
-
-    //    //Returns the integer coordinates of the cell on the tilemap or grid if i tried.
-    //    return hexTileMap.WorldToCell(mouseWorldPos);
-    //}
     public void PlaceObjectAtCellCenter(Vector3Int cellPos)
     {
         //Vector3 cellWorldPos = hexTileMap.CellToWorld(cellPos);
@@ -117,22 +106,18 @@ public class PlacementManager : MonoBehaviour
         cellCenter.z = 0f;
 
         //Get New Tile From Shop
-        selectedObjTile = GetGameObject(shopMan.selectedTile);
+        GameObject prefab = TileList[shopMan.selectedTile];
 
         // Place Tile
-        GameObject prefab = TileList[shopMan.selectedTile];
         GameObject placedTile = Instantiate(prefab, cellCenter, Quaternion.identity);
-        //selectedObjTile.transform.position = cellCenter;
 
-        hexTileMap.SetTile(cellPos, selectedTile);
+        hexTileMap.SetTile(cellPos, selectedTile);  //For checking If their is a tile their
         globalMan.canPlace = false;
+
+        //Debug Stuff
+        Debug.Log("CanPlace equals: " + globalMan.canPlace);
         Debug.Log("Tile Object placed!");
         Debug.Log("Can't place anymore!");
-    }
-    public GameObject GetGameObject(int selectedTile)
-    {
-        GameObject objTile = TileList[selectedTile];
-        return objTile;
     }
     public bool raycastThing()
     {
