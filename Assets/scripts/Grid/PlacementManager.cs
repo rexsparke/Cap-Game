@@ -4,6 +4,7 @@ using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class PlacementManager : MonoBehaviour
@@ -18,20 +19,13 @@ public class PlacementManager : MonoBehaviour
     private GameObject selectedObjTile;
     ShopManager shopMan;
     HexInShop hexShop;
+    int selectTile;
 
 
     void Start()
     {
         shopMan = GetComponent<ShopManager>();
         globalMan = GetComponent<GlobalManager>();
-        //if(globalMan.canPlace == false)
-        //{
-        //    Debug.LogError("CanPlay is false");
-        //}
-        //else
-        //{
-        //    Debug.Log("Can place is not null");
-        //}
         #region Debug
         //if (hexTileMap != null && selectedTile != null)
         //{
@@ -104,15 +98,16 @@ public class PlacementManager : MonoBehaviour
         //Get grid cell center
         Vector3 cellCenter = hexTileMap.GetCellCenterWorld(cellPos);
         cellCenter.z = 0f;
-
+        selectTile = shopMan.selectedTile;
         //Get New Tile From Shop
-        GameObject prefab = TileList[shopMan.selectedTile];
+        GameObject prefab = TileList[selectTile];
 
         // Place Tile
         GameObject placedTile = Instantiate(prefab, cellCenter, Quaternion.identity);
 
         hexTileMap.SetTile(cellPos, selectedTile);  //For checking If their is a tile their
         globalMan.canPlace = false;
+        selectTile = 0;
 
         //Debug Stuff
         Debug.Log("CanPlace equals: " + globalMan.canPlace);
