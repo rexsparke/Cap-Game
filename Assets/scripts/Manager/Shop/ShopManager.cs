@@ -52,7 +52,7 @@ public class ShopManager : MonoBehaviour
 
     public void HexSelection()
     {
-        int randomHex = UnityEngine.Random.Range(0, 3);
+        int randomHex = UnityEngine.Random.Range(0, 2);
         switch (randomHex)
         {
             case 0:

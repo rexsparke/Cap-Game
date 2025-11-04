@@ -100,11 +100,12 @@ public class PlacementManager : MonoBehaviour
         cellCenter.z = 0f;
         selectTile = shopMan.selectedTile;
         //Get New Tile From Shop
-        GameObject prefab = TileList[selectTile];
+        //GameObject prefab = TileList[selectTile];
 
         // Place Tile
-        GameObject placedTile = Instantiate(prefab, cellCenter, Quaternion.identity);
 
+        //GameObject placedTile = Instantiate(prefab, cellCenter, Quaternion.identity);
+        hexShop.selectTile.transform.position = cellPos;
         hexTileMap.SetTile(cellPos, selectedTile);  //For checking If their is a tile their
         globalMan.canPlace = false;
         selectTile = 0;
