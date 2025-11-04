@@ -5,6 +5,7 @@ using UnityEngine;
 public class GlobalManager : MonoBehaviour
 {
     public bool canPlace;
+    public bool isPaused;
 
     void Start()
     {
