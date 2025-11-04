@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using static UnityEngine.GraphicsBuffer;
 
@@ -21,6 +22,7 @@ public class PlacementManager : MonoBehaviour
 
     void Start()
     {
+        shopMan = GetComponent<ShopManager>();
         globalMan = GetComponent<GlobalManager>();
         //if(globalMan.canPlace == false)
         //{
@@ -105,20 +107,24 @@ public class PlacementManager : MonoBehaviour
             Debug.LogError("Grid reference is missing!");
             return;
         }
-        if (shopMan == null || shopMan.selectedTile == null)
+        if (shopMan == null)
         {
             Debug.LogError("Shop manager or selected tile is missing!");
             return;
         }
         //Get grid cell center
-        Vector3 cellCenter = grid.GetCellCenterWorld(cellPos);
+        Vector3 cellCenter = hexTileMap.GetCellCenterWorld(cellPos);
+        cellCenter.z = 0f;
 
         //Get New Tile From Shop
         selectedObjTile = GetGameObject(shopMan.selectedTile);
 
         // Place Tile
-        selectedObjTile.transform.position = new Vector2(cellCenter.x,cellCenter.y);
-        //hexTileMap.SetTile(cellPos, selectedTile);
+        GameObject prefab = TileList[shopMan.selectedTile];
+        GameObject placedTile = Instantiate(prefab, cellCenter, Quaternion.identity);
+        //selectedObjTile.transform.position = cellCenter;
+
+        hexTileMap.SetTile(cellPos, selectedTile);
         globalMan.canPlace = false;
         Debug.Log("Tile Object placed!");
         Debug.Log("Can't place anymore!");
@@ -130,28 +136,45 @@ public class PlacementManager : MonoBehaviour
     }
     public bool raycastThing()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        // Get mouse position in screen coordinates
-        Vector3 mousePos = Input.mousePosition;
-
-        // Convert screen coordinates to world coordinates
-        mousePos.z = 10f; // Set a small positive z-value for raycasting
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
-
-        // Cast a ray from the mouse position
-        RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
-        if (hit.collider != null)
+        // Prevent placement if clicking UI
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
         {
-            if (hit.collider.gameObject.CompareTag("UI"))
-            {
-                return false;
-            }
-            if (hit.collider.gameObject.CompareTag("ShopHex"))
-            {
-                return false;
-            }
+            return false;
+        }
+
+        // Check if hitting a collider in world space
+        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D hit = Physics2D.OverlapPoint(worldPoint);
+
+        if (hit != null && (hit.CompareTag("UI") || hit.CompareTag("ShopHex")))
+        {
+            return false;
         }
         return true;
+        #region stuff
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //// Get mouse position in screen coordinates
+        //Vector3 mousePos = Input.mousePosition;
+
+        //// Convert screen coordinates to world coordinates
+        //mousePos.z = 10f; // Set a small positive z-value for raycasting
+        //Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+
+        //// Cast a ray from the mouse position
+        //RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+        //if (hit.collider != null)
+        //{
+        //    if (hit.collider.gameObject.CompareTag("UI"))
+        //    {
+        //        return false;
+        //    }
+        //    if (hit.collider.gameObject.CompareTag("ShopHex"))
+        //    {
+        //        return false;
+        //    }
+        //}
+        //return true;
+        #endregion
     }
     #region practice
     //void DrawCellOutline(Vector3 worldPos)
