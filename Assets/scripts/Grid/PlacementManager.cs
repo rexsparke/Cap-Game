@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -10,22 +11,21 @@ using static UnityEngine.GraphicsBuffer;
 public class PlacementManager : MonoBehaviour
 {
     public Tilemap hexTileMap;
-    public Tile selectedTile;
     public Grid grid;
     public GetTileType tileType;
 
     public List<GameObject> TileList = new List<GameObject>();
     GlobalManager globalMan;
-    private GameObject selectedObjTile;
     ShopManager shopMan;
     HexInShop hexShop;
-    int selectTile;
+    public GameObject hexObject;
 
 
     void Start()
     {
         shopMan = GetComponent<ShopManager>();
         globalMan = GetComponent<GlobalManager>();
+
         #region Debug
         //if (hexTileMap != null && selectedTile != null)
         //{
@@ -46,10 +46,6 @@ public class PlacementManager : MonoBehaviour
            {
          //   if(hexShop
                 ////Get Tile For placement
-                if (selectedTile == null)
-                {
-                    Debug.LogError("Get Tile Method returned null");
-                }
                 //Get world position of mouse
                 Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(
                             new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
@@ -98,17 +94,20 @@ public class PlacementManager : MonoBehaviour
         //Get grid cell center
         Vector3 cellCenter = hexTileMap.GetCellCenterWorld(cellPos);
         cellCenter.z = 0f;
-        selectTile = shopMan.selectedTile;
+
         //Get New Tile From Shop
         //GameObject prefab = TileList[selectTile];
 
         // Place Tile
-
-        //GameObject placedTile = Instantiate(prefab, cellCenter, Quaternion.identity);
-        hexShop.selectTile.transform.position = cellPos;
-        hexTileMap.SetTile(cellPos, selectedTile);  //For checking If their is a tile their
+        if(hexObject == null)
+        {
+            Debug.LogError("HepShop Selected Tile is Null!");
+        }
+        hexObject.transform.position = cellCenter;
+        //hexTileMap.SetTile(cellPos, selectedTile);  //For checking If their is a tile their
+        Debug.Log(hexObject + " was placed");
+        //hexShop.selectTile = null;
         globalMan.canPlace = false;
-        selectTile = 0;
 
         //Debug Stuff
         Debug.Log("CanPlace equals: " + globalMan.canPlace);

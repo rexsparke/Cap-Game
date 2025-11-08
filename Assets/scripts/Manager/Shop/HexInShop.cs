@@ -9,15 +9,17 @@ public class HexInShop : MonoBehaviour
     public GameObject hexOutline;
     public ShopManager shopManager;
     public GlobalManager globalManager;
+    PlacementManager placeMang;
 
     static int shopPositionSetup = 1;
     int shopPosition;
     public bool canPlace = false;
-    public GameObject selectTile;
+    GameObject selectTile;
 
     void Awake()
     {
         globalManager = GameObject.Find("main").GetComponent<GlobalManager>();
+        placeMang = GameObject.Find("main").GetComponent<PlacementManager>();
         shopPosition = shopPositionSetup; //Assigns the position variable based on where the tile is in the shop (1-3)
         shopPositionSetup++;
     }
@@ -30,8 +32,8 @@ public class HexInShop : MonoBehaviour
             Debug.Log("Selected Tile int is: " + shopManager.selectedTile);
             hexOutline.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             globalManager.canPlace = true;
-            selectTile = raycastThing();    //For getting the gameObject
-            //selectTile = transform.gameObject;
+            placeMang.hexObject = this.gameObject;
+            Debug.Log(placeMang.hexObject + "was selected!");
             Debug.Log("CanPlace = " + globalManager.canPlace);
             Debug.Log("Can place Tile!");
         }
@@ -50,30 +52,5 @@ public class HexInShop : MonoBehaviour
             shopPositionSetup = shopPosition;
             shopManager.ReplaceStock(shopPosition); //Restocks the shop with a new tile in the position of the old one
         }
-    }
-    public GameObject raycastThing()
-    {
-        // Check if hitting a collider in world space
-        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Collider2D hit = Physics2D.OverlapPoint(worldPoint);
-
-        if (hit != null && hit.CompareTag("ShopHex"))
-        {
-            //if (hit.name == "newHex")
-            //{
-            //    return GameObject.Find(hit.name);
-            //}
-            //else if (hit.name == "newHexRed")
-            //{
-            //    return GameObject.Find(hit.name); ;
-            //}
-            //else if (hit.name == "newHexBlue")
-            //{
-            //    return GameObject.Find(hit.name); ;
-            //}
-            return GameObject.Find(hit.name);
-        }
-        Debug.LogError("raycast object could not be found!");
-        return null;
     }
 }
