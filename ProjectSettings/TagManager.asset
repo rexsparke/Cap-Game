@@ -9,6 +9,7 @@ TagManager:
   - BoardHex
   - HoneyComb
   - UI
+  - textCounter
   layers:
   - Default
   - TransparentFX

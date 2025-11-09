@@ -16,7 +16,7 @@ public class PlacementManager : MonoBehaviour
     GlobalManager globalMan;
     ShopManager shopMan;
     HexInShop hexShop;
-    Text shopCounter;
+    public Text shopCounter;
 
     public GameObject hexObject;
     public int maxTiles;
@@ -28,7 +28,6 @@ public class PlacementManager : MonoBehaviour
         currentTilesAmo = 3;
         shopMan = GetComponent<ShopManager>();
         globalMan = GetComponent<GlobalManager>();
-        shopCounter = FindAnyObjectByType<Text>();
         shopCounter.text = "Amount of Tiles Left: " + currentTilesAmo + " / " + maxTiles;
 
         #region Debug
@@ -116,9 +115,6 @@ public class PlacementManager : MonoBehaviour
         Vector3 cellCenter = hexTileMap.GetCellCenterWorld(cellPos);
         cellCenter.z = 0f;
 
-        //Get New Tile From Shop
-        //GameObject prefab = TileList[selectTile];
-
         // Place Tile
         if(hexObject == null)
         {
@@ -127,8 +123,7 @@ public class PlacementManager : MonoBehaviour
         hexObject.transform.position = cellCenter;
         //hexTileMap.SetTile(cellPos, selectedTile);  //For checking If their is a tile their
         Debug.Log(hexObject + " was placed");
-        //hexShop.selectTile = null;
-        //currentTilesAmo = currentTilesAmo--;    //After placing Tile
+
         globalMan.canPlace = false;
 
         //Debug Stuff

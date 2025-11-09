@@ -9,8 +9,15 @@ public class GameManager : MonoBehaviour
     public GameObject waspPrefab;   // Drag your Wasp prefab here in Inspector
     public int waspsToSpawn = 3;    // How many to spawn per fight
     public Transform spawnArea;     // Optional: empty object marking spawn zone
+    PlacementManager placeManger;
 
     public GameObject[] spawnHexes;
+    public GameObject shopBack;
+
+    void Start()
+    {
+
+    }
 
     void Update()
     {
@@ -33,6 +40,8 @@ public class GameManager : MonoBehaviour
             currentPhase = GamePhase.Combat;
             NotifyPhaseChange("Combat Phase");
 
+            //EndBuildPase(); //For Making the shop disappear
+
             spawnHexes = GameObject.FindGameObjectsWithTag("BoardHex");
             foreach (GameObject hex in spawnHexes)
             {
@@ -49,6 +58,8 @@ public class GameManager : MonoBehaviour
         {
             currentPhase = GamePhase.Build;
             NotifyPhaseChange("Build Phase");
+
+            //EndBuildPase(); //For Reappearing shop menu
         }
     }
 
@@ -76,5 +87,51 @@ public class GameManager : MonoBehaviour
     private void NotifyPhaseChange(string phaseName)
     {
         Debug.Log($"Switched to: {phaseName}");
+    }
+    public void EndBuildPase()
+    {
+        GameObject[] shopTiles = new GameObject[3];
+        shopTiles = GameObject.FindGameObjectsWithTag("ShopHex");
+
+        if(currentPhase == GamePhase.Combat)
+        {
+            shopBack.transform.localPosition = new Vector3 (shopBack.transform.localPosition.x - 400, shopBack.transform.localPosition.y, 0);
+            foreach (GameObject shopTile in shopTiles)
+            {
+                shopTile.transform.localPosition = new Vector3(shopTile.transform.localPosition.x - 5, shopTile.transform.localPosition.y, 0);
+            }
+            Debug.Log("ShopTiles were moved");
+        }
+        else if (currentPhase == GamePhase.Build)
+        {
+            shopBack.transform.localPosition = new Vector3(shopBack.transform.localPosition.x + 400, shopBack.transform.localPosition.y, 0);
+            foreach (GameObject shopTile in shopTiles)
+            {
+                shopTile.transform.position = new Vector3(shopTile.transform.position.x + 5, shopTile.transform.position.y, 0);
+            }
+        }
+        
+
+    }
+    public void ReappearShop()
+    {
+        GameObject[] shopTiles = new GameObject[3];
+        shopTiles = GameObject.FindGameObjectsWithTag("ShopHex");
+        shopBack.transform.localPosition = new Vector3(shopBack.transform.localPosition.x - 400, shopBack.transform.localPosition.y, 0);
+        foreach (GameObject shopTile in shopTiles)
+        {
+            shopTile.transform.localPosition = new Vector3(shopTile.transform.localPosition.x - 5, shopTile.transform.localPosition.y, 0);
+        }
+        Debug.Log("ShopTiles were moved");
+    }
+    public void DiappearShop()
+    {
+        GameObject[] shopTiles = new GameObject[3];
+        shopTiles = GameObject.FindGameObjectsWithTag("ShopHex");
+        shopBack.transform.localPosition = new Vector3(shopBack.transform.localPosition.x + 400, shopBack.transform.localPosition.y, 0);
+        foreach (GameObject shopTile in shopTiles)
+        {
+            shopTile.transform.position = new Vector3(shopTile.transform.position.x + 5, shopTile.transform.position.y, 0);
+        }
     }
 }
