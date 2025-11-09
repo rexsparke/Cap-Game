@@ -31,8 +31,10 @@ public class HexInShop : MonoBehaviour
             shopManager.selectedTile = shopPosition;
             Debug.Log("Selected Tile int is: " + shopManager.selectedTile);
             hexOutline.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            
             globalManager.canPlace = true;
             placeMang.hexObject = this.gameObject;
+
             Debug.Log(placeMang.hexObject + "was selected!");
             Debug.Log("CanPlace = " + globalManager.canPlace);
             Debug.Log("Can place Tile!");
