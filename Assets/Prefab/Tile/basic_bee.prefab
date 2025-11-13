@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8908071156629271369}
   - component: {fileID: 1606656385623517416}
   - component: {fileID: 6932478194682067780}
-  - component: {fileID: 3984778385196449672}
+  - component: {fileID: -5929601622672932640}
   m_Layer: 0
   m_Name: basic_bee
   m_TagString: ShopHex
@@ -138,7 +138,7 @@ MonoBehaviour:
   shopManager: {fileID: 0}
   globalManager: {fileID: 0}
   canPlace: 0
---- !u!114 &3984778385196449672
+--- !u!114 &-5929601622672932640
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1183927397961932210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e907ba128a7136429d331842e6d507f, type: 3}
+  m_Script: {fileID: 11500000, guid: db41f667d475d254ba82a6f797fa8002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wzardBeeSprit: {fileID: 651357727021227815, guid: 73b92d78c89d14a4c93292f031b57bc4, type: 3}
+  basicBee: {fileID: 651357727021227815, guid: 73b92d78c89d14a4c93292f031b57bc4, type: 3}

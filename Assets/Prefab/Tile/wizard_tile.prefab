@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2321835946662737103}
   - component: {fileID: 8145057395749659435}
   - component: {fileID: 7639838850686050230}
+  - component: {fileID: 7772371368317102141}
   m_Layer: 0
   m_Name: wizard_tile
   m_TagString: ShopHex
@@ -137,3 +138,16 @@ MonoBehaviour:
   shopManager: {fileID: 0}
   globalManager: {fileID: 0}
   canPlace: 0
+--- !u!114 &7772371368317102141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7945888409861663271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e907ba128a7136429d331842e6d507f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wzardBeeSprit: {fileID: 1829533395245435105, guid: 29ea1162949e94f46b2baa6a2f52a9bb, type: 3}
