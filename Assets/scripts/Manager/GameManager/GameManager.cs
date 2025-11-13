@@ -13,10 +13,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] spawnHexes;
     public GameObject shopBack;
+    GlobalManager globalManager;
+    
 
     void Start()
     {
-
+        globalManager = GetComponent<GlobalManager>();
     }
 
     void Update()
@@ -133,5 +135,11 @@ public class GameManager : MonoBehaviour
         {
             shopTile.transform.position = new Vector3(shopTile.transform.position.x + 5, shopTile.transform.position.y, 0);
         }
+    }
+    public void startAttackPase()
+    {
+        globalManager.buildPase = false;
+        globalManager.attackPase = true;
+        Debug.Log("Attack Pase is: " +  globalManager.attackPase);
     }
 }

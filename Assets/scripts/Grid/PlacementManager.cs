@@ -13,7 +13,7 @@ public class PlacementManager : MonoBehaviour
     public Tilemap hexTileMap;
     public Grid grid;
 
-    GlobalManager globalMan;
+    public GlobalManager globalMan;
     ShopManager shopMan;
     HexInShop hexShop;
     public Text shopCounter;
