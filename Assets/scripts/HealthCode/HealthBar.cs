@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [Header("References")]
-    public Image Fill;                 // assign the child Image used as the green bar
+    public Image healthbar;                 // assign the child Image used as the green bar
 
     private Transform target;          // what we follow
     private HealthSystem health;       // whose health we show
@@ -25,27 +25,29 @@ public class HealthBar : MonoBehaviour
         }
 
         // Ensure the Fill image will respond to fillAmount
-        if (Fill != null)
-        {
-            Fill.type = Image.Type.Filled;
-            Fill.fillMethod = Image.FillMethod.Horizontal; // left -> right
-            Fill.fillOrigin = 0;                           // start at left
-        }
+        //if (Fill != null)
+        //{
+        //    Fill.type = Image.Type.Filled;
+        //    Fill.fillMethod = Image.FillMethod.Horizontal; // left -> right
+        //    Fill.fillOrigin = 0;                           // start at left
+        //}
     }
 
-    public void Initialize(HealthSystem targetHealth)
-    {
-        health = targetHealth;
-        target = targetHealth.transform;
+    //public void Initialize(HealthSystem targetHealth)
+    //{
+    //    health = targetHealth;
+    //    target = targetHealth.transform;
 
-        health.OnHealthChanged.AddListener(UpdateBar);
-        UpdateBar(health.CurrentHealth, health.MaxHealth);
-    }
+    //    health.OnHealthChanged.AddListener(UpdateBar);
+    //    UpdateBar(health.CurrentHealth, health.MaxHealth);
+    //}
 
     private void UpdateBar(int current, int max)
     {
-        if (Fill != null && max > 0)
-            Fill.fillAmount = Mathf.Clamp01((float)current / max);
+        if (healthbar != null && max > 0)
+        {
+            healthbar.fillAmount = Mathf.Clamp01((float)current / max);
+        }
     }
 
     private void LateUpdate()

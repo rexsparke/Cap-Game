@@ -9,14 +9,18 @@ public class GlobalManager : MonoBehaviour
     public int waveNumber;
     public bool buildPase;
     public bool attackPase;
+    public int hiveHealth;
+    public int maxHiveHealth;
 
 
-    void Start()
+    void Awake()
     {
         canPlace = false;
         buildPase = true;
         attackPase = false;
         waveNumber = 0;
         isPaused = false;
+        maxHiveHealth = 100;
+        hiveHealth = maxHiveHealth;
     }
 }

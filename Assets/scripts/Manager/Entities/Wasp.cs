@@ -46,7 +46,7 @@ public class Wasp : MonoBehaviour
         if (honeyHealth != null)
         {
             Debug.Log($"Hit a honeycomb! Damaging {collision.gameObject.name}");
-            honeyHealth.TakeDamage(damage);
+            //honeyHealth.TakeDamage(damage);
 
             if (dieOnHit)
             {
@@ -63,7 +63,7 @@ public class Wasp : MonoBehaviour
 
     private void FindClosestHoneyComb()
     {
-        GameObject[] combs = GameObject.FindGameObjectsWithTag("HoneyComb");
+        GameObject[] combs = GameObject.FindGameObjectsWithTag("BoardHex");
 
         if (combs == null || combs.Length == 0)
         {

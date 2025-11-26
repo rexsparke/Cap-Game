@@ -22,57 +22,60 @@ public class HealthSystem : MonoBehaviour
         CurrentHealth = MaxHealth;
     }
 
-    private void Start()
+    //private void Start()
+    //{
+    //    // Spawn and link a health bar above this object
+    //    if (healthBarPrefab != null)
+    //    {
+    //        GameObject bar = Instantiate(
+    //            healthBarPrefab,
+    //            transform.position + Vector3.up * 1f,
+    //            Quaternion.identity
+    //        );
+
+    //        activeBar = bar.GetComponent<HealthBar>();
+    //        if (activeBar != null)
+    //            activeBar.Initialize(this);
+    //    }
+    //}
+
+    public void TakeDamage(int damage)
     {
-        // Spawn and link a health bar above this object
-        if (healthBarPrefab != null)
-        {
-            GameObject bar = Instantiate(
-                healthBarPrefab,
-                transform.position + Vector3.up * 1f,
-                Quaternion.identity
-            );
+        //if (isDead)
+        //{
+        //    return;
+        //}
 
-            activeBar = bar.GetComponent<HealthBar>();
-            if (activeBar != null)
-                activeBar.Initialize(this);
-        }
-    }
-
-    public void TakeDamage(int amount)
-    {
-        if (isDead) return;
-
-        CurrentHealth -= amount;
+        CurrentHealth -= damage;
         CurrentHealth = Mathf.Max(CurrentHealth, 0);
 
         // Notify any listeners (like HealthBar)
-        OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
+        //OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
 
-        if (CurrentHealth <= 0)
-        {
-            Die();
-        }
+        //if (CurrentHealth <= 0)
+        //{
+        //    Die();
+        //}
     }
 
-    private void Die()
-    {
-        if (isDead) return;
-        isDead = true;
+    //private void Die()
+    //{
+    //    if (isDead) return;
+    //    isDead = true;
 
-        //  Notify global health manager
-        GlobalHealthManager globalManager = FindObjectOfType<GlobalHealthManager>();
-        if (globalManager != null)
-            globalManager.OnHoneycombDestroyed();
+    //    //  Notify global health manager
+    //    GlobalHealthManager globalManager = FindObjectOfType<GlobalHealthManager>();
+    //    if (globalManager != null)
+    //        globalManager.OnHoneycombDestroyed();
 
-        //  Destroy the health bar if one exists
-        if (activeBar != null)
-            Destroy(activeBar.gameObject);
+    //    //  Destroy the health bar if one exists
+    //    if (activeBar != null)
+    //        Destroy(activeBar.gameObject);
 
-        //  Trigger any custom events (particle, animation, etc.)
-        OnDeath?.Invoke();
+    //    //  Trigger any custom events (particle, animation, etc.)
+    //    OnDeath?.Invoke();
 
-        //  Finally destroy the honeycomb itself
-        Destroy(gameObject);
-    }
+    //    //  Finally destroy the honeycomb itself
+    //    //Destroy(gameObject);
+    //}
 }

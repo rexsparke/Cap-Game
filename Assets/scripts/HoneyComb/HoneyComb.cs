@@ -10,9 +10,9 @@ public class HoneyComb : MonoBehaviour
         health = GetComponent<HealthSystem>();
     }
 
-    public void DamageComb(int damage)
-    {
-        health.TakeDamage(damage);
-    }
+    //public void DamageComb(int damage)
+    //{
+    //    health.TakeDamage(damage);
+    //}
 
 }

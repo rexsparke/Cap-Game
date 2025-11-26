@@ -35,20 +35,27 @@ public class GameManager : MonoBehaviour
     }
 
     // Called by the button
-    public void StartCombat()
+    public void StartCombat_OnClick()
     {
         if (currentPhase == GamePhase.Build)
         {
             currentPhase = GamePhase.Combat;
+
+            startAttackPase();
+            DiappearShop();
+            EndBuildPase();
+
             NotifyPhaseChange("Combat Phase");
+
+            
 
             //EndBuildPase(); //For Making the shop disappear
 
-            spawnHexes = GameObject.FindGameObjectsWithTag("BoardHex");
-            foreach (GameObject hex in spawnHexes)
-            {
-                hex.SendMessage("Spawn");
-            }
+            //spawnHexes = GameObject.FindGameObjectsWithTag("BoardHex");
+            //foreach (GameObject hex in spawnHexes)
+            //{
+            //    hex.SendMessage("Spawn");
+            //}
 
             SpawnWasps();
         }
@@ -60,6 +67,7 @@ public class GameManager : MonoBehaviour
         {
             currentPhase = GamePhase.Build;
             NotifyPhaseChange("Build Phase");
+            ReappearShop();
 
             //EndBuildPase(); //For Reappearing shop menu
         }
@@ -95,9 +103,9 @@ public class GameManager : MonoBehaviour
         GameObject[] shopTiles = new GameObject[3];
         shopTiles = GameObject.FindGameObjectsWithTag("ShopHex");
 
-        if(currentPhase == GamePhase.Combat)
+        if (currentPhase == GamePhase.Combat)
         {
-            shopBack.transform.localPosition = new Vector3 (shopBack.transform.localPosition.x - 400, shopBack.transform.localPosition.y, 0);
+            shopBack.transform.localPosition = new Vector3(shopBack.transform.localPosition.x - 400, shopBack.transform.localPosition.y, 0);
             foreach (GameObject shopTile in shopTiles)
             {
                 shopTile.transform.localPosition = new Vector3(shopTile.transform.localPosition.x - 5, shopTile.transform.localPosition.y, 0);
@@ -112,8 +120,6 @@ public class GameManager : MonoBehaviour
                 shopTile.transform.position = new Vector3(shopTile.transform.position.x + 5, shopTile.transform.position.y, 0);
             }
         }
-        
-
     }
     public void ReappearShop()
     {
