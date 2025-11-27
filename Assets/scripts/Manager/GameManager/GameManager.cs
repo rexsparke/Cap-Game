@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Am in reappearShop funtion");
         shoptiles = GameObject.FindGameObjectsWithTag("ShopHex");
         shopBack.transform.localPosition = new Vector3(shopBack.transform.localPosition.x - 400, shopBack.transform.localPosition.y, 0);
-        foreach (GameObject shopTile in shopTiles)
+        foreach (GameObject shopTile in shoptiles)
         {
             shopTile.transform.localPosition = new Vector3(shopTile.transform.localPosition.x - 5, shopTile.transform.localPosition.y, 0);
         }

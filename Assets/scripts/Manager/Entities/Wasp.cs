@@ -4,14 +4,14 @@ using UnityEngine;
 public class Wasp : MonoBehaviour
 {
     [Header("Attack Settings")]
-    public int damage = 4;                 // Damage dealt per hit
+    public int damage = 1;                 // Damage dealt per hit
     public float moveSpeed = 2.5f;         // Movement speed toward honeycomb
     //public bool dieOnHit = true;         // Should the wasp die after hitting a honeycomb?
 
     private Transform target;              // Current target honeycomb
     private Rigidbody2D rb;                // Rigidbody for movement
     HealthSystem healthSystem;
-    Bee beeScript;
+    public int waspHealth = 10;
 
     private void Start()
     {
@@ -35,6 +35,11 @@ public class Wasp : MonoBehaviour
             FindClosestHoneyComb();
             return;
         }
+        if (waspHealth <= 0)
+        {
+            Destroy(gameObject);
+            Debug.Log("Wasp was destroyed!!");
+        }
 
         // Move toward the honeycomb target
         Vector2 direction = (target.position - transform.position).normalized;
@@ -48,8 +53,8 @@ public class Wasp : MonoBehaviour
     {
         if(collision.gameObject.tag == "bee")
         {
-            beeScript = collision.gameObject.GetComponent<Bee>();
-            beeScript.health = beeScript.health - damage;
+            collision.gameObject.GetComponent<Bee>().health -= damage;
+            Debug.Log("Bee Health: " + collision.gameObject.GetComponent<Bee>().health);
             Debug.Log("Bee was Damaged!!!");
 
         }
