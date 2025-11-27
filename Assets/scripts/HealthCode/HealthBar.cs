@@ -16,52 +16,53 @@ public class HealthBar : MonoBehaviour
     private void Awake()
     {
         // Find the Canvas under this prefab
-        canvas = GetComponentInChildren<Canvas>(true);
+        //    canvas = GetComponentInChildren<Canvas>(true);
 
-        // Make sure it's set up for world-space UI
-        if (canvas != null && canvas.renderMode == RenderMode.WorldSpace)
-        {
-            if (canvas.worldCamera == null) canvas.worldCamera = Camera.main;
-        }
+        //    // Make sure it's set up for world-space UI
+        //    if (canvas != null && canvas.renderMode == RenderMode.WorldSpace)
+        //    {
+        //        if (canvas.worldCamera == null) canvas.worldCamera = Camera.main;
+        //    }
 
-        // Ensure the Fill image will respond to fillAmount
-        //if (Fill != null)
-        //{
-        //    Fill.type = Image.Type.Filled;
-        //    Fill.fillMethod = Image.FillMethod.Horizontal; // left -> right
-        //    Fill.fillOrigin = 0;                           // start at left
+        //    // Ensure the Fill image will respond to fillAmount
+        //    //if (Fill != null)
+        //    //{
+        //    //    Fill.type = Image.Type.Filled;
+        //    //    Fill.fillMethod = Image.FillMethod.Horizontal; // left -> right
+        //    //    Fill.fillOrigin = 0;                           // start at left
+        //    //}
         //}
-    }
 
-    //public void Initialize(HealthSystem targetHealth)
-    //{
-    //    health = targetHealth;
-    //    target = targetHealth.transform;
+        ////public void Initialize(HealthSystem targetHealth)
+        ////{
+        ////    health = targetHealth;
+        ////    target = targetHealth.transform;
 
-    //    health.OnHealthChanged.AddListener(UpdateBar);
-    //    UpdateBar(health.CurrentHealth, health.MaxHealth);
-    //}
+        ////    health.OnHealthChanged.AddListener(UpdateBar);
+        ////    UpdateBar(health.CurrentHealth, health.MaxHealth);
+        ////}
 
-    private void UpdateBar(int current, int max)
-    {
-        if (healthbar != null && max > 0)
-        {
-            healthbar.fillAmount = Mathf.Clamp01((float)current / max);
-        }
-    }
+        //private void UpdateBar(int current, int max)
+        //{
+        //    if (healthbar != null && max > 0)
+        //    {
+        //        healthbar.fillAmount = Mathf.Clamp01((float)current / max);
+        //    }
+        //}
 
-    private void LateUpdate()
-    {
-        if (target == null) return;
+        //private void LateUpdate()
+        //{
+        //    if (target == null) return;
 
-        // Follow the target and keep the bar flat to the 2D camera
-        transform.position = target.position + offset;
-        transform.rotation = Quaternion.identity; // billboard for 2D
-    }
+        //    // Follow the target and keep the bar flat to the 2D camera
+        //    transform.position = target.position + offset;
+        //    transform.rotation = Quaternion.identity; // billboard for 2D
+        //}
 
-    private void OnDestroy()
-    {
-        if (health != null)
-            health.OnHealthChanged.RemoveListener(UpdateBar);
+        //private void OnDestroy()
+        //{
+        //    if (health != null)
+        //        health.OnHealthChanged.RemoveListener(UpdateBar);
+        //}
     }
 }

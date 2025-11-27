@@ -10,6 +10,9 @@ TagManager:
   - HoneyComb
   - UI
   - textCounter
+  - bee
+  - wasp
+  - healthBar
   layers:
   - Default
   - TransparentFX
@@ -20,9 +23,9 @@ TagManager:
   - Ground
   - stuff
   - WorldUI
-  - 
-  - 
-  - 
+  - bee
+  - wasp
+  - tile
   - 
   - 
   - 

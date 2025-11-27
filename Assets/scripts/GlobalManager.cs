@@ -11,6 +11,7 @@ public class GlobalManager : MonoBehaviour
     public bool attackPase;
     public int hiveHealth;
     public int maxHiveHealth;
+    public bool isDead;
 
 
     void Awake()
@@ -22,5 +23,6 @@ public class GlobalManager : MonoBehaviour
         isPaused = false;
         maxHiveHealth = 100;
         hiveHealth = maxHiveHealth;
+        isDead = false;
     }
 }

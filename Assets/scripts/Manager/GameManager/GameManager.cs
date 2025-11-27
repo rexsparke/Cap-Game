@@ -11,10 +11,12 @@ public class GameManager : MonoBehaviour
     public Transform spawnArea;     // Optional: empty object marking spawn zone
     PlacementManager placeManger;
 
+    GameObject randomTile;
     public GameObject[] spawnHexes;
     public GameObject shopBack;
     GlobalManager globalManager;
-    
+    GameObject[] shopTiles = new GameObject[3];
+
 
     void Start()
     {
@@ -39,25 +41,26 @@ public class GameManager : MonoBehaviour
     {
         if (currentPhase == GamePhase.Build)
         {
-            currentPhase = GamePhase.Combat;
+            randomTile = GameObject.FindGameObjectWithTag("BoardHex");  //Checking player actually places starting tile
+            if(randomTile != null)
+            {
+                Debug.Log("About to Start Attack phase");
+                startAttackPhase(shopTiles);
 
-            startAttackPase();
-            DiappearShop();
-            EndBuildPase();
-
-            NotifyPhaseChange("Combat Phase");
-
+                NotifyPhaseChange("Combat Phase");
+                //spawnHexes = GameObject.FindGameObjectsWithTag("BoardHex");
+                //foreach (GameObject hex in spawnHexes)
+                //{
+                //    hex.SendMessage("Spawn");
+                //}
+                SpawnWasps();
+                currentPhase = GamePhase.Combat;
+            }
+            else
+            {
+                Debug.Log("Player did not place a starting tile");
+            }
             
-
-            //EndBuildPase(); //For Making the shop disappear
-
-            //spawnHexes = GameObject.FindGameObjectsWithTag("BoardHex");
-            //foreach (GameObject hex in spawnHexes)
-            //{
-            //    hex.SendMessage("Spawn");
-            //}
-
-            SpawnWasps();
         }
     }
 
@@ -67,7 +70,7 @@ public class GameManager : MonoBehaviour
         {
             currentPhase = GamePhase.Build;
             NotifyPhaseChange("Build Phase");
-            ReappearShop();
+            ReappearShop(shopTiles);
 
             //EndBuildPase(); //For Reappearing shop menu
         }
@@ -121,10 +124,10 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void ReappearShop()
+    public void ReappearShop(GameObject[] shoptiles)
     {
-        GameObject[] shopTiles = new GameObject[3];
-        shopTiles = GameObject.FindGameObjectsWithTag("ShopHex");
+        Debug.Log("Am in reappearShop funtion");
+        shoptiles = GameObject.FindGameObjectsWithTag("ShopHex");
         shopBack.transform.localPosition = new Vector3(shopBack.transform.localPosition.x - 400, shopBack.transform.localPosition.y, 0);
         foreach (GameObject shopTile in shopTiles)
         {
@@ -132,20 +135,23 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("ShopTiles were moved");
     }
-    public void DiappearShop()
+    public void DiappearShop(GameObject[] shoptiles)
     {
-        GameObject[] shopTiles = new GameObject[3];
-        shopTiles = GameObject.FindGameObjectsWithTag("ShopHex");
+        shoptiles = GameObject.FindGameObjectsWithTag("ShopHex");
         shopBack.transform.localPosition = new Vector3(shopBack.transform.localPosition.x + 400, shopBack.transform.localPosition.y, 0);
-        foreach (GameObject shopTile in shopTiles)
+        foreach (GameObject shopTile in shoptiles)
         {
             shopTile.transform.position = new Vector3(shopTile.transform.position.x + 5, shopTile.transform.position.y, 0);
         }
+        
     }
-    public void startAttackPase()
+    public void startAttackPhase(GameObject[] shoptiles)
     {
+        Debug.Log("Starting attack phase");
         globalManager.buildPase = false;
         globalManager.attackPase = true;
         Debug.Log("Attack Pase is: " +  globalManager.attackPase);
+        DiappearShop(shopTiles);
+        EndBuildPase();
     }
 }

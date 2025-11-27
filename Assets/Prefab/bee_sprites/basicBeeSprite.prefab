@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 7004158689363659743}
   - component: {fileID: 4331345875601018851}
   - component: {fileID: 7343167538262177513}
+  - component: {fileID: 5789198983693800421}
   - component: {fileID: -694502968176720572}
   m_Layer: 0
   m_Name: basicBeeSprite
-  m_TagString: Untagged
+  m_TagString: bee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,6 +122,33 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5.1002007
+--- !u!50 &5789198983693800421
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651357727021227815}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &-694502968176720572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,8 +156,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651357727021227815}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ab80f1ebc7e600418f5ca9a3d1f6166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
+  moveSpeed: 2.5
+  dieOnHit: 1

@@ -1773,6 +1773,7 @@ GameObject:
   - component: {fileID: 1462416419}
   - component: {fileID: 1462416420}
   - component: {fileID: 1462416421}
+  - component: {fileID: 1462416422}
   m_Layer: 0
   m_Name: main
   m_TagString: Untagged
@@ -1852,6 +1853,7 @@ MonoBehaviour:
   attackPase: 0
   hiveHealth: 0
   maxHiveHealth: 0
+  isDead: 0
 --- !u!114 &1462416421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1866,10 +1868,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPhase: 0
   waspPrefab: {fileID: 8519419838677065550, guid: 38677a44a68ec3644969d2c1a5429678, type: 3}
-  waspsToSpawn: 3
+  waspsToSpawn: 1
   spawnArea: {fileID: 539920642}
   spawnHexes: []
   shopBack: {fileID: 285386430}
+--- !u!114 &1462416422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462416414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68e00499e4aeb24ca4d8e1d6d214129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1482153514
 GameObject:
   m_ObjectHideFlags: 0
@@ -3025,6 +3039,10 @@ PrefabInstance:
     - target: {fileID: 1599160496688359626, guid: 0fa88e7ca61663347b6ca5664c6e3c0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219166379715558223, guid: 0fa88e7ca61663347b6ca5664c6e3c0e, type: 3}
+      propertyPath: m_TagString
+      value: healthBar
       objectReference: {fileID: 0}
     - target: {fileID: 3670271442350508506, guid: 0fa88e7ca61663347b6ca5664c6e3c0e, type: 3}
       propertyPath: m_SizeDelta.x

@@ -1,25 +1,38 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class HealthSystem : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private GameObject healthBarPrefab;
+    //[SerializeField] private GameObject healthBarPrefab;
 
     [Header("Health Settings")]
-    public int MaxHealth = 5;
-    public int CurrentHealth;
+    //public int MaxHealth = 5;
+    //public int CurrentHealth;
+    GlobalManager globManager;
 
-    public UnityEvent<int, int> OnHealthChanged;
-    public UnityEvent OnDeath;
+    //public UnityEvent<int, int> OnHealthChanged;
+    //public UnityEvent OnDeath;
 
-    private HealthBar activeBar;
-    private bool isDead = false;
+    //private HealthBar activeBar;
+    hivHealth hivHealth;
 
     private void Awake()
     {
-        // Always start full health
-        CurrentHealth = MaxHealth;
+    //    // Always start full health
+    //    CurrentHealth = MaxHealth;
+        globManager = GetComponent<GlobalManager>();
+        if(globManager == null )
+        {
+            Debug.LogError("globManger is null!");
+        }
+        hivHealth = GameObject.FindGameObjectWithTag("healthBar").GetComponent<hivHealth>();
+        if( hivHealth == null )
+        {
+            Debug.LogError("Their is no hivHealth is null!! in HealthSystem");
+        }
     }
 
     //private void Start()
@@ -41,21 +54,20 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        //if (isDead)
-        //{
-        //    return;
-        //}
-
-        CurrentHealth -= damage;
-        CurrentHealth = Mathf.Max(CurrentHealth, 0);
-
+        Debug.Log("Hex is being damaged");
+        //CurrentHealth -= damage;
+        //CurrentHealth = Mathf.Max(CurrentHealth, 0);
+        //float fraction = Mathf.Clamp01((float)current / max);
+        globManager.hiveHealth -= damage;
+        globManager.hiveHealth = Mathf.Max(globManager.hiveHealth, 0);
+        hivHealth.UpdateHealth(Mathf.Clamp01((float)globManager.hiveHealth / globManager.maxHiveHealth));
         // Notify any listeners (like HealthBar)
         //OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
 
-        //if (CurrentHealth <= 0)
-        //{
-        //    Die();
-        //}
+        if (globManager.hiveHealth <= 0)
+        {
+            SceneManager.LoadScene("GameOverScene");
+        }
     }
 
     //private void Die()

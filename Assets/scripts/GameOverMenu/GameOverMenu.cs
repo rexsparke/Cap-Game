@@ -6,7 +6,7 @@ public class GameOverMenu : MonoBehaviour
     // Reloads the PlayGround scene to restart the game
     public void RestartGame()
     {
-        SceneManager.LoadScene("PlayGroundScene");
+        SceneManager.LoadScene("MainScene");
     }
 
     // Quits the application (works in builds)
