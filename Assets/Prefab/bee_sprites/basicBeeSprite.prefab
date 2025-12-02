@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7343167538262177513}
   - component: {fileID: 5789198983693800421}
   - component: {fileID: -694502968176720572}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: basicBeeSprite
   m_TagString: bee
   m_Icon: {fileID: 0}

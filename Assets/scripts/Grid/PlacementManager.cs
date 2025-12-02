@@ -96,6 +96,10 @@ public class PlacementManager : MonoBehaviour
                 Debug.Log("You Have to choose another Tile!");
             }
         }
+        if(globalMan.buildPase == true)
+        {
+            shopCounter.text = "Amount of Tiles Left: " + currentTilesAmo + " / " + maxTiles;
+        }
     }
     public void PlaceObjectAtCellCenter(Vector3Int cellPos, int curretTiles)
     {

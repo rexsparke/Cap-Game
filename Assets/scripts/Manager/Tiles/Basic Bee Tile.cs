@@ -25,7 +25,7 @@ public class BasicBeeTile : MonoBehaviour
         if (this.CompareTag("BoardHex"))
             if (globalManager.attackPase == true && currentSpawn != maxSpawn)
             {
-                GameObject newHex = Instantiate(basicBee, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
+                Instantiate(basicBee, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
                 currentSpawn++;
             }
     }

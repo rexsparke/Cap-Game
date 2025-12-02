@@ -4,16 +4,19 @@ using UnityEngine;
 public class Wasp : MonoBehaviour
 {
     [Header("Attack Settings")]
-    public int damage = 1;                 // Damage dealt per hit
+    public int damage = 2;                 // Damage dealt per hit
     public float moveSpeed = 2.5f;         // Movement speed toward honeycomb
     //public bool dieOnHit = true;         // Should the wasp die after hitting a honeycomb?
 
     private Transform target;              // Current target honeycomb
     private Rigidbody2D rb;                // Rigidbody for movement
     HealthSystem healthSystem;
-    public int waspHealth = 10;
+    public int waspHealth;
+    public int maxWaspHealth = 22;
+    public float attackSpeed = 1f;
+    public float attackCooldown = 0f;
 
-    private void Start()
+    private void Awake()
     {
         healthSystem = GameObject.Find("main").GetComponent<HealthSystem>();
         if(healthSystem == null )
@@ -23,7 +26,7 @@ public class Wasp : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;               // Prevent falling
         rb.freezeRotation = true;
-
+        waspHealth = maxWaspHealth;
         FindClosestHoneyComb();
     }
 
@@ -35,12 +38,12 @@ public class Wasp : MonoBehaviour
             FindClosestHoneyComb();
             return;
         }
-        if (waspHealth <= 0)
-        {
-            Destroy(gameObject);
-            Debug.Log("Wasp was destroyed!!");
-        }
+        
 
+        if (attackCooldown > 0) //Timer for wasp
+        {
+            attackCooldown -= Time.deltaTime;
+        }
         // Move toward the honeycomb target
         Vector2 direction = (target.position - transform.position).normalized;
         rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
@@ -51,28 +54,38 @@ public class Wasp : MonoBehaviour
     //}
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "bee")
+        if(attackCooldown <= 0)
         {
-            collision.gameObject.GetComponent<Bee>().health -= damage;
-            Debug.Log("Bee Health: " + collision.gameObject.GetComponent<Bee>().health);
-            Debug.Log("Bee was Damaged!!!");
-
-        }
-        else
-        {
-            Debug.Log($"Wasp collided with {collision.gameObject.name}");
-            if (healthSystem != null)
+            if (collision.gameObject.CompareTag("bee"))
             {
-                Debug.Log($"Hit a honeycomb! Damaging {collision.gameObject.name}");
-                Debug.Log("I made it in if to check collision tag");
-                healthSystem.TakeDamage(damage);
+                Bee bee = collision.gameObject.GetComponent<Bee>();
+                if (bee != null)
+                {
+                    bee.TakeDamage(damage);
+                    attackCooldown = attackSpeed;
+                }
+                else
+                {
+                    Debug.LogWarning("Object tagged 'bee' has no Wasp component!");
+                }
+            }
+            else if (collision.gameObject.CompareTag("BoardHex"))
+            {
+                Debug.Log($"Wasp collided with {collision.gameObject.name}");
+                if (healthSystem != null)
+                {
+                    Debug.Log($"Hit a honeycomb! Damaging {collision.gameObject.name}");
+                    Debug.Log("I made it in if to check collision tag");
+                    healthSystem.TakeDamage(damage);
 
-                //if (dieOnHit)
-                //{
-                //    Destroy(gameObject);
-                //}
+                    //if (dieOnHit)
+                    //{
+                    //    Destroy(gameObject);
+                    //}
+                }
             }
         }
+        
     }
 
     private void OnMouseDown()
@@ -106,8 +119,19 @@ public class Wasp : MonoBehaviour
 
         target = closestTarget;
     }
-    private void FindClosestBee()
+    public void TakeDamage(int amount)
     {
+        // Subtract and clamp between 0 and maxHealth
+        waspHealth = Mathf.Clamp(waspHealth - amount, 0, maxWaspHealth);
 
+       //waspHealth = Mathf.Max(waspHealth, 0);
+
+        Debug.Log("Wasp Health: " + waspHealth);
+
+        if (waspHealth <= 0)
+        {
+            Destroy(gameObject);
+            Debug.Log("Wasp Died!");
+        }
     }
 }

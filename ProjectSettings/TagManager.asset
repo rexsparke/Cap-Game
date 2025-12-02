@@ -53,3 +53,9 @@ TagManager:
   - name: WorldUI
     uniqueID: 884025997
     locked: 0
+  - name: tiles
+    uniqueID: 534086175
+    locked: 0
+  - name: playerObjects
+    uniqueID: 3493545543
+    locked: 0

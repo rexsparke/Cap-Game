@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         globalManager = GetComponent<GlobalManager>();
+        placeManger = GetComponent<PlacementManager>();
     }
 
     void Update()
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
 
             if (wasps.Length == 0)
             {
-                SwitchToBuild();
+                SwitchToBuild(shopTiles);
             }
         }
     }
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
             if(randomTile != null)
             {
                 Debug.Log("About to Start Attack phase");
-                startAttackPhase(shopTiles);
+                StartAttackPhase(shopTiles);
 
                 NotifyPhaseChange("Combat Phase");
                 //spawnHexes = GameObject.FindGameObjectsWithTag("BoardHex");
@@ -64,14 +65,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SwitchToBuild()
+    private void SwitchToBuild(GameObject[] shoptiles)
     {
         if (currentPhase == GamePhase.Combat)
         {
             currentPhase = GamePhase.Build;
             NotifyPhaseChange("Build Phase");
             ReappearShop(shopTiles);
-
+            endAttackPhase(shoptiles);
             //EndBuildPase(); //For Reappearing shop menu
         }
     }
@@ -145,7 +146,7 @@ public class GameManager : MonoBehaviour
         }
         
     }
-    public void startAttackPhase(GameObject[] shoptiles)
+    public void StartAttackPhase(GameObject[] shoptiles)
     {
         Debug.Log("Starting attack phase");
         globalManager.buildPase = false;
@@ -153,5 +154,15 @@ public class GameManager : MonoBehaviour
         Debug.Log("Attack Pase is: " +  globalManager.attackPase);
         DiappearShop(shopTiles);
         EndBuildPase();
+    }
+    public void endAttackPhase(GameObject[] shoptiles)
+    {
+        Debug.Log("Starting Build phase");
+        globalManager.buildPase = true;
+        globalManager.attackPase = false;
+        globalManager.canPlace = true;
+        Debug.Log("Attack Pase is: " + globalManager.attackPase);
+        placeManger.currentTilesAmo = placeManger.maxTiles;
+        ReappearShop(shopTiles);
     }
 }
