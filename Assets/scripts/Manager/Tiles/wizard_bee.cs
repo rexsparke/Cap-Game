@@ -25,9 +25,10 @@ public class wizard_bee : MonoBehaviour
         if(this.CompareTag("BoardHex"))
         if(globalManager.attackPase == true && currentSpawn != maxSpawn)
         {
-            GameObject newHex = Instantiate(wzardBeeSprit, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
+            GameObject newTurret = Instantiate(wzardBeeSprit, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
             currentSpawn++;
-        }
+            
+            }
         
     }
 

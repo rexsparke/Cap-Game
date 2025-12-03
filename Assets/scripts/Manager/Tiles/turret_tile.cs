@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class turret_tile : MonoBehaviour
 {
-    // Start is called before the first frame update
+    GlobalManager globalManager;
+    public GameObject turretSprite;
+    int maxSpawn = 1;
+    int currentSpawn = 0;
     void Start()
     {
-        
+        globalManager = GameObject.Find("main").GetComponent<GlobalManager>();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (globalManager.attackPase == true && currentSpawn != maxSpawn)
+        {
+            SpawnTurret();
+        }
+    }
+    public void SpawnTurret()
+    {
+        if (this.CompareTag("BoardHex"))
+            if (globalManager.attackPase == true && currentSpawn != maxSpawn)
+            {
+                GameObject newTurret = Instantiate(turretSprite, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
+                currentSpawn++;
+            }
+
     }
 }

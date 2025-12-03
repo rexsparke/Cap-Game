@@ -16,7 +16,7 @@ public class BeeWizard : MonoBehaviour
     private float timer = 0f;
     public float lifeTime = 5f;  //Destroys bullet afeter 3 secounds
     private Transform target;              // Current target wasp
-    float moveSpeed = 25;
+    float moveSpeed = 30;
 
     void Awake()
     {

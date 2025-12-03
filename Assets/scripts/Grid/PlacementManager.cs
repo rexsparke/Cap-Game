@@ -91,10 +91,10 @@ public class PlacementManager : MonoBehaviour
                     Debug.Log("You used all your Tiles from shop");
                 }
             }
-            else
-            {
-                Debug.Log("You Have to choose another Tile!");
-            }
+            //else
+            //{
+            //    Debug.Log("You Have to choose another Tile!");
+            //}
         }
         if(globalMan.buildPase == true)
         {

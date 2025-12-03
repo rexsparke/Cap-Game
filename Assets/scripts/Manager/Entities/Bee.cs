@@ -14,12 +14,17 @@ public class Bee : MonoBehaviour
     public int health = 20;
     public int maxHealth = 20;
     GlobalManager globManager;
+    public BasicBeeTile basicBee;
     Vector2 beginPos;
     public float attackSpeed = 1f;
     public float attackCooldown = 0f;
-
+    
     private void Start()
     {
+        if(basicBee == null)
+        {
+            Debug.Log("Basic bee tile is nule!!");
+        }
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;               // Prevent falling
         rb.freezeRotation = true;
@@ -131,6 +136,9 @@ public class Bee : MonoBehaviour
         {
             Destroy(gameObject);
             Debug.Log("Bee Died!");
+            basicBee.currentSpawn--;
+            Debug.Log("Current Spawn is: " + basicBee.currentSpawn);
+
         }
     }
 }

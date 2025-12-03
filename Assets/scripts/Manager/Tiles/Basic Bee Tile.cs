@@ -8,7 +8,12 @@ public class BasicBeeTile : MonoBehaviour
     GlobalManager globalManager;
     public GameObject basicBee;
     int maxSpawn = 1;
-    int currentSpawn = 0;
+    public int currentSpawn = 0;
+    public class beeSprites
+    {
+        string Bees;
+        bool isDead;
+    }
     void Start()
     {
         globalManager = GameObject.Find("main").GetComponent<GlobalManager>();
@@ -25,8 +30,16 @@ public class BasicBeeTile : MonoBehaviour
         if (this.CompareTag("BoardHex"))
             if (globalManager.attackPase == true && currentSpawn != maxSpawn)
             {
-                Instantiate(basicBee, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
+                GameObject newBee= Instantiate(basicBee, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
+                Bee beebasic = newBee.GetComponent<Bee>();
+                beebasic.basicBee = this;
                 currentSpawn++;
+                Debug.Log("New bee spawned!!");
             }
+            //else if(globalManager.buildPase == true && currentSpawn != maxSpawn)
+            //{
+            //    currentSpawn = (maxSpawn - currentSpawn);
+            //    Debug.Log("Current Spawn is: " + currentSpawn);
+            //}
     }
 }
