@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8905863393660001797}
   - component: {fileID: 3366138967063791732}
   - component: {fileID: 1224735023159243887}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: turret_tile
   m_TagString: ShopHex
   m_Icon: {fileID: 0}

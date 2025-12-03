@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5153542918117618518}
   - component: {fileID: 1858648884946360258}
   - component: {fileID: 6553428277157627776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: flower_tile
   m_TagString: ShopHex
   m_Icon: {fileID: 0}

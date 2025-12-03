@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1606656385623517416}
   - component: {fileID: 6932478194682067780}
   - component: {fileID: -5929601622672932640}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: basic_bee
   m_TagString: ShopHex
   m_Icon: {fileID: 0}

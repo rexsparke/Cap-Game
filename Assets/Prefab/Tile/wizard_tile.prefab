@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8145057395749659435}
   - component: {fileID: 7639838850686050230}
   - component: {fileID: 7772371368317102141}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: wizard_tile
   m_TagString: ShopHex
   m_Icon: {fileID: 0}

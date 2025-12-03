@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4102730326133202230}
   - component: {fileID: 7773506714307355402}
   - component: {fileID: 8887049001894435914}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: lightningBullet
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,7 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d4e176f5c4cb642ad4886540b8e686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidBody: {fileID: 0}
-  moveSpeed: 1
   damage: 2
-  lifeTime: 5
