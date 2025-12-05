@@ -72,7 +72,7 @@ public class PlacementManager : MonoBehaviour
                     {
                         //Debug.Log("Mouse world pos: " + mouseWorldPos + " | Cell pos: " + cellPos);
                         PlaceObjectAtCellCenter(cellPos, currentTilesAmo);
-                        shopCounter.text = "Amount of Tiles Left: " + --currentTilesAmo + " / " + maxTiles;
+                        shopCounter.text = "Tiles Left: " + --currentTilesAmo + " / " + maxTiles;
                     }
                     #region Debug
                     //if(hexTileMap == null)
@@ -98,7 +98,7 @@ public class PlacementManager : MonoBehaviour
         }
         if(globalMan.buildPase == true)
         {
-            shopCounter.text = "Amount of Tiles Left: " + currentTilesAmo + " / " + maxTiles;
+            shopCounter.text = "Tiles Left: " + currentTilesAmo + " / " + maxTiles;
         }
     }
     public void PlaceObjectAtCellCenter(Vector3Int cellPos, int curretTiles)
@@ -132,8 +132,6 @@ public class PlacementManager : MonoBehaviour
 
         //Debug Stuff
         Debug.Log("CanPlace equals: " + globalMan.canPlace);
-        Debug.Log("Tile Object placed!");
-        Debug.Log("Can't place anymore!");
     }
     public bool raycastThing()
     {

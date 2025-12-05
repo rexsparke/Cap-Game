@@ -77,6 +77,7 @@ public class Wasp : MonoBehaviour
                     Debug.Log($"Hit a honeycomb! Damaging {collision.gameObject.name}");
                     Debug.Log("I made it in if to check collision tag");
                     healthSystem.TakeDamage(damage);
+                    attackCooldown = attackSpeed;
 
                     //if (dieOnHit)
                     //{
