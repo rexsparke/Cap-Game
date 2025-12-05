@@ -20,8 +20,11 @@ public class HexInShop : MonoBehaviour
     {
         globalManager = GameObject.Find("main").GetComponent<GlobalManager>();
         placeMang = GameObject.Find("main").GetComponent<PlacementManager>();
-        shopPosition = shopPositionSetup; //Assigns the position variable based on where the tile is in the shop (1-3)
-        shopPositionSetup++;
+        if(this.tag == "ShopHex")
+        {
+            shopPosition = shopPositionSetup; //Assigns the position variable based on where the tile is in the shop (1-3)
+            shopPositionSetup++;
+        }
     }
 
     private void OnMouseDown() //Sets the selected tile in the Shop Manager based on position and adds highlight to current hex

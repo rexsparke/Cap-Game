@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class PollinatorBee : MonoBehaviour
+public class PollinatorBeeScript : MonoBehaviour
 {
-    public GameObject flower;
+    public GameObject flowerTile;
 
     Vector2 home;
     protected Transform target;
@@ -17,7 +15,7 @@ public class PollinatorBee : MonoBehaviour
     void Start()
     {
         home = transform.position;
-        target = flower.transform;
+        target = flowerTile.transform;
     }
 
     void Update()
@@ -30,7 +28,8 @@ public class PollinatorBee : MonoBehaviour
             {
                 StartCoroutine(Gathering());
             }
-        } else
+        }
+        else
         {
             transform.position = Vector2.MoveTowards(transform.position, home, 1 * Time.deltaTime);
         }

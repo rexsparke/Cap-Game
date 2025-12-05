@@ -9,6 +9,12 @@ public class ShopManager : MonoBehaviour
 
     public GameObject[] currentHexes;
 
+    //List of GameObjects for tiles
+    public GameObject pollinatorBee;
+    public GameObject flowerTile;
+
+
+
     float spawnY = 3.5f;
     public int selectedTile = 0; //Currently selected tile in the shop
 
@@ -52,23 +58,25 @@ public class ShopManager : MonoBehaviour
 
     public void HexSelection()
     {
-        int randomHex = UnityEngine.Random.Range(0, 2);
+        int randomHex = UnityEngine.Random.Range(0, 3);
         switch (randomHex)
         {
             case 0:
-                GameObject newHex = Instantiate(hexes[0], new Vector3(8.8f, spawnY), Quaternion.identity);
-                newHex.GetComponent<HexInShop>().shopManager = this;
-                newHex.GetComponent<HexInShop>().hexOutline = hexOutline;
+                GameObject basicHex = Instantiate(hexes[0], new Vector3(8.8f, spawnY), Quaternion.identity);
+                basicHex.GetComponent<HexInShop>().shopManager = this;
+                basicHex.GetComponent<HexInShop>().hexOutline = hexOutline;
                 break;
             case 1:
-                GameObject newHexRed = Instantiate(hexes[1], new Vector3(8.8f, spawnY), Quaternion.identity);
-                newHexRed.GetComponent<HexInShop>().shopManager = this;
-                newHexRed.GetComponent<HexInShop>().hexOutline = hexOutline; 
+                GameObject wizardHex = Instantiate(hexes[1], new Vector3(8.8f, spawnY), Quaternion.identity);
+                wizardHex.GetComponent<HexInShop>().shopManager = this;
+                wizardHex.GetComponent<HexInShop>().hexOutline = hexOutline; 
                 break;
             case 2:
-                GameObject newHexBlue = Instantiate(hexes[2], new Vector3(8.8f, spawnY), Quaternion.identity);
-                newHexBlue.GetComponent<HexInShop>().shopManager = this;
-                newHexBlue.GetComponent<HexInShop>().hexOutline = hexOutline; 
+                GameObject pollenHex = Instantiate(hexes[2], new Vector3(8.8f, spawnY), Quaternion.identity);
+                pollenHex.GetComponent<HexInShop>().shopManager = this;
+                pollenHex.GetComponent<HexInShop>().hexOutline = hexOutline;
+                pollenHex.GetComponent<PollinatorBeeTile>().pollinatorBee = pollinatorBee;
+                pollenHex.GetComponent<PollinatorBeeTile>().flowerTile = flowerTile;
                 break;
         }
     }

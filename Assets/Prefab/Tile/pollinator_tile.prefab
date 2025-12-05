@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &651357727021227815
+--- !u!1 &4237204021097811122
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7004158689363659743}
-  - component: {fileID: 4331345875601018851}
-  - component: {fileID: 7343167538262177513}
-  - component: {fileID: 5789198983693800421}
-  - component: {fileID: -694502968176720572}
-  m_Layer: 10
-  m_Name: basicBeeSprite
-  m_TagString: bee
+  - component: {fileID: 8680172304277666840}
+  - component: {fileID: 8622277814551165030}
+  - component: {fileID: 1938653769612563373}
+  - component: {fileID: 3817213845186357173}
+  - component: {fileID: 3140654303591956822}
+  m_Layer: 9
+  m_Name: pollinator_tile
+  m_TagString: ShopHex
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7004158689363659743
+--- !u!4 &8680172304277666840
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651357727021227815}
+  m_GameObject: {fileID: 4237204021097811122}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: -7.82, y: 2.56, z: 0}
+  m_LocalScale: {x: 0.181, y: 0.181, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4331345875601018851
+--- !u!212 &8622277814551165030
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651357727021227815}
+  m_GameObject: {fileID: 4237204021097811122}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,25 +75,25 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: f24ec20e3a1535c4fb704b3204414f5f, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: bc8c4b49eac721e488d142e7dd342146, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.8828125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &7343167538262177513
+--- !u!58 &1938653769612563373
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651357727021227815}
+  m_GameObject: {fileID: 4237204021097811122}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -102,7 +102,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -121,51 +121,34 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5.1002007
---- !u!50 &5789198983693800421
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651357727021227815}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 1536
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &-694502968176720572
+  m_Radius: 4.29
+--- !u!114 &3817213845186357173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651357727021227815}
+  m_GameObject: {fileID: 4237204021097811122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab80f1ebc7e600418f5ca9a3d1f6166, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a443e2ff9b217a48a606a854cf31ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  moveSpeed: 5
-  dieOnHit: 1
-  health: 20
-  maxHealth: 20
-  basicBee: {fileID: 0}
-  attackSpeed: 1
-  attackCooldown: 0
+  hexOutline: {fileID: 0}
+  shopManager: {fileID: 0}
+  globalManager: {fileID: 0}
+  canPlace: 0
+--- !u!114 &3140654303591956822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4237204021097811122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54163cf12594b85478f8ca2b64712c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pollinatorBee: {fileID: 0}
+  currentSpawn: 0

@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &86921709
 RectTransform:
   m_ObjectHideFlags: 0
@@ -173,9 +173,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1098,6 +1098,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779852826}
   m_CullTransparentMesh: 1
+--- !u!1 &796785409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1999863121084792434, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
+  m_PrefabInstance: {fileID: 1463444178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &833841119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,8 +1833,10 @@ MonoBehaviour:
   hexes:
   - {fileID: 1183927397961932210, guid: 362c1a9accdb9a749bd7c8d00838f0f9, type: 3}
   - {fileID: 7945888409861663271, guid: 59742f63eb12a7341b7c171891193420, type: 3}
-  - {fileID: 6111780903604574684, guid: b0ba787f933f210439f413bcca6366bd, type: 3}
+  - {fileID: 4237204021097811122, guid: 3bd3a4a421a00814faac2be165bbde3d, type: 3}
   currentHexes: []
+  pollinatorBee: {fileID: 747584849726341879, guid: 99ea73f8ca9dfc744b396932070d2050, type: 3}
+  flowerTile: {fileID: 796785409}
   selectedTile: 0
 --- !u!4 &1462416416
 Transform:
@@ -1915,6 +1922,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68e00499e4aeb24ca4d8e1d6d214129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1463444178
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1767392044711345104, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767392044711345104, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767392044711345104, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767392044711345104, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767392044711345104, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767392044711345104, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767392044711345104, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767392044711345104, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767392044711345104, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767392044711345104, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1999863121084792434, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
+      propertyPath: m_Name
+      value: flower_tile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1999863121084792434, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
+      propertyPath: m_TagString
+      value: BoardHex
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f6382dd9b3d85674a9eb3789bb92242f, type: 3}
 --- !u!1 &1482153514
 GameObject:
   m_ObjectHideFlags: 0
@@ -3142,3 +3210,4 @@ SceneRoots:
   - {fileID: 1328525479}
   - {fileID: 539920642}
   - {fileID: 374883057}
+  - {fileID: 1463444178}
