@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PollinatorBeeScript : MonoBehaviour
@@ -8,19 +9,24 @@ public class PollinatorBeeScript : MonoBehaviour
 
     Vector2 home;
     protected Transform target;
+    PlacementManager placementManager;
+    GlobalManager globManager;
 
     int stage = 0;
     float distance;
+    bool added = false;
 
     void Start()
     {
         home = transform.position;
         target = flowerTile.transform;
+        placementManager = GameObject.Find("main").GetComponent<PlacementManager>();
+        globManager = GameObject.Find("main").GetComponent<GlobalManager>();
     }
 
     void Update()
     {
-        if (stage == 0)
+        if (stage == 0 && globManager.attackPase)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, 1 * Time.deltaTime);
             distance = (transform.position - target.position).magnitude;
@@ -32,6 +38,19 @@ public class PollinatorBeeScript : MonoBehaviour
         else
         {
             transform.position = Vector2.MoveTowards(transform.position, home, 1 * Time.deltaTime);
+            
+        }
+        if(new Vector2(transform.position.x, transform.position.y) == home && stage == 1)
+        {
+            added = true;
+            
+        }
+        if (globManager.buildPase && added == true)
+        {
+            placementManager.maxTiles += 1;
+            //Debug.Log("")
+            stage = 0;
+            added = false;
         }
     }
 
