@@ -48,6 +48,7 @@ public class PollinatorBeeScript : MonoBehaviour
         if (globManager.buildPase && added == true)
         {
             placementManager.maxTiles += 1;
+            placementManager.currentTilesAmo += 1;
             //Debug.Log("")
             stage = 0;
             added = false;
